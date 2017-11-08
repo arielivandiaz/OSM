@@ -37,7 +37,7 @@ int main( int argc, char** argv ) {
             resolver.evaluateCUS( epsilon, referencePath, dataPath, usersNumber, frames, printVerbose );
         }
 
-        resolver.printResults();
+        resolver.printResults(referencePath, dataPath);
     }
     else {
         return EXIT_FAILURE;

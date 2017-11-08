@@ -14,7 +14,7 @@ class MethodResolver
 public:
     void evaluateBHI(float epsilon, int distance, string referencePath, string dataPath, bool doubleZone, int usersNumber, int frames, bool printVerbose);
     void evaluateCUS(float epsilon, string referencePath, string dataPath, int usersNumber, int frames, bool printVerbose);
-    void printResults();
+    void printResults(string referencePath, string dataPath);
 
 private:
     void evaluate(float epsilon, int distance, string referencePath, string dataPath, bool doubleZone, int usersNumber, int frames, bool printVerbose);
