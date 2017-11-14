@@ -91,24 +91,29 @@ void MethodResolver::printResults(string referencePath, string dataPath) {
         cout << "F-meter: " << this->Fmeter << endl;
         cout << "Cohen's Kappa: " << this->Kappa << endl;
         cout << "*****************************************************" << endl;
-        int file_csv=1;
+        
 
         ofstream file ("output.txt", std::ios::app);
         file << fixed;
         file.precision(5);
 
+        ofstream file_csv ("output.csv", std::ios::app);
+        file_csv << fixed;
+        file_csv.precision(5);
+
         if (file.is_open())
         {   
             
-            if(file_csv){
-            file << referencePath << " vs " << dataPath <<  "\t";
-            file << this->CUSa << "\t" << this->CUSe << "\t"  << this->precision << "\t" << this->recall << "\t" << this->Fmeter << "\t"  << this->Kappa << '\n';
-            }else{
+    
+            file_csv << referencePath << " vs " << dataPath <<  "\t";
+            file_csv << this->CUSa << "\t" << this->CUSe << "\t"  << this->precision << "\t" << this->recall << "\t" << this->Fmeter << "\t"  << this->Kappa << '\n';
+            
             file << referencePath << " vs " << dataPath <<  "\t\t";
             file << this->CUSa << "\t\t" << this->CUSe << "\t\t"  << this->precision << "\t\t" << this->recall << "\t\t" << this->Fmeter << "\t\t"  << this->Kappa << '\n';
-            }
+            
            
             file.close();
+            file_csv.close();
         }
     }
     else {
