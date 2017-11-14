@@ -354,3 +354,20 @@ Evaluation date: 17-41-37_14-11-2017
 ********************************************************************************************************************************************
 			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa
 ../../output/v21/reference vs ../../output/v21/data/	0.81253	1.32687	0.41333	0.81253	0.54793	0.53376
+../../output/v21/reference vs ../../output/v21/data/	0.81253	1.32687	0.41333	0.81253	0.54793	0.53376
+
+********************************************************************************************************************************************
+Evaluation date: 17-54-27_14-11-2017
+	-distance	=	120
+	-users_csv	=	../../user_summaries/VSUMM/v21b
+	-users	=	5
+	-video_length	=	3290
+	-format	=	.jpg
+	-epsilon	=	0.4
+	-vsum_csv	=	../../auto_summaries/VSUMM1/v21b
+	-output_path	=	../../output/v21
+	-video	=	../../videos/v21.mpg
+	-method	=	1
+********************************************************************************************************************************************
+			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa
+../../output/v21/reference vs ../../output/v21/data/	0.81253	1.32687	0.41333	0.81253	0.54793	0.53376
