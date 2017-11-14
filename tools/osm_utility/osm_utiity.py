@@ -12,6 +12,7 @@ import numpy as np
 import argparse
 import datetime
 import argparse
+from os import walk
 
 
 
@@ -645,13 +646,16 @@ def get_frame_with_ID(parameters):
 
 #************************************************************************************************************
 
-def create_sh(parameters):
+def create_sh(parameters,path):
 
 	epsilon=parameters.epsilon
 	distance=parameters.distance
 	users=parameters.users
 	length=parameters.video_length
-	video_name=	parameters.video
+	if parameters.group:
+		video_name=path
+	else:
+		video_name=	parameters.video
 	method=parameters.method
 
 
@@ -669,6 +673,7 @@ def create_sh(parameters):
 	file.write('echo "Users:'+str(users)+ '"\n')
 	file.write('echo "Simple zone"\n')
 
+
 	if method==False:
 		command='../../src/build/osm --method bhi -e {0} -d {1} -n {2} -f {3} -r "{4}/reference" -i "{4}/data/" --verbose \n'
 		file.write(command.format(epsilon,distance,users,length,parameters.output_path))
@@ -682,20 +687,20 @@ def create_sh(parameters):
 #************************************************************************************************************
 
 
+
 def addline_sh(parameters):
 
-	file = open('run.sh','w')
-	if method==False:
-		print "Generating RUN.SH for BHI"
-		file.write('echo "Evaluating the video: ' +video_name+ ' with BHI"\n')
-		file.write('echo "Distance:'+str(distance)+ '"\n')
-	else:
-		print "Generating RUN.SH for CUS"
-		file.write('echo "Evaluating the video: ' +video_name+ ' with CUS"\n')
-		
-	file.write('echo "Epsilon:'+str(epsilon)+ '"\n')	
-	file.write('echo "Users:'+str(users)+ '"\n')
-	file.write('echo "Simple zone"\n')
+	epsilon=parameters.epsilon
+	distance=parameters.distance
+	users=parameters.users
+	length=parameters.video_length
+	video_name=	parameters.video
+	method=parameters.method
+
+
+
+	file = open('run.sh','a')
+
 
 	if method==False:
 		command='../../src/build/osm --method bhi -e {0} -d {1} -n {2} -f {3} -r "{4}/reference" -i "{4}/data/" --verbose \n'
@@ -707,6 +712,7 @@ def addline_sh(parameters):
 	
 	file.close()
 
+#************************************************************************************************************
 
 def output_label (parameters):
 
@@ -723,29 +729,123 @@ def output_label (parameters):
 
 		file.close()
 
+#************************************************************************************************************
+
+def multiple_metric(parameters):
+
+	vsumm_files=0
+	video_files=0
+	users_files=0
+	for (path, ficheros, archivos) in walk(parameters.video):
+		video_files=len(archivos)
+	for (path, ficheros, archivos) in walk(parameters.users_csv):
+		users_files =len(archivos)
+	for (path, ficheros, archivos) in walk(parameters.vsum_csv):
+		vsumm_files=len(archivos)
+
+	if video_files != users_files or users_files != vsumm_files:
+		print "PROBLEM WITH FILES"
+		print "vsumm_files = ",vsumm_files
+		print "users_files = ",users_files
+		print "video_files = ",video_files
+
+	video_names=[]
+	
+	for (path, ficheros, archivos) in walk(parameters.video):
+			for i in range (0,len(archivos)):
+				if len(archivos[i])>1:			
+					video_names.append(archivos[i])
+					#eval_files2.append(archivos[i].split('.')[0])
+
+
+	return video_names
+
 
 if __name__ == '__main__':
 
+	"""
+	Parameters:
+		
+		parameters.debug
+		parameters.group
+		parameters.video
+		parameters.users_csv
+		parameters.vsum_csv
+		parameters.label
+		parameters.method
+		parameters.format
+		parameters.quality
+		parameters.offset
+		parameters.epsilon
+		parameters.distance
+		parameters.users
+		parameters.video_length
+		parameters.output_path
+
+	"""
 
 
 	param = process_args() 
 
-	#prin_objet(param)
+	if param.group:
+		videos=multiple_metric(param)
+		videos_path=param.video
+		users_path=param.users_csv
+		vsum_path=param.vsum_csv
 
-	binary_flag = is_binary_selection(param)
+		output_label(param)	
 
-	if binary_flag==1: #File with 0s & 1s			
-		video_length = get_frame_without_ID(param)
-	elif binary_flag==0:  #File with frame numbers
-		video_length = get_frame_with_ID(param)
-	else:
-		print "PROBLEM WITH CSV INPUT FORMAT"
 
-	setattr(param, 'video_length', video_length)	
+		#for i in range(0,len(videos)):
+		for i in range(0,5):
+		
+			param.video=videos_path + "/" + videos[i]			
+			param.users_csv=users_path + "/" + videos[i].split('.')[0]
+			param.vsum_csv=vsum_path + "/" + videos[i].split('.')[0]
+			#print param.video
+			#print param.vsum_csv
+			#print param.users_csv
 
-	output_label(param)
+			binary_flag = is_binary_selection(param)
 
-	create_sh(param)
+			if binary_flag==1: #File with 0s & 1s			
+				video_length = get_frame_without_ID(param)
+			elif binary_flag==0:  #File with frame numbers
+				video_length = get_frame_with_ID(param)
+			else:
+				print "PROBLEM WITH CSV INPUT FORMAT"
+
+
+
+
+			setattr(param, 'video_length', video_length)
+
+		
+			if i==0:
+				create_sh(param,videos_path)
+			else:
+				addline_sh(param)
+
+
+		
+
+
+	else: ################################################################
+	
+		binary_flag = is_binary_selection(param)
+
+		if binary_flag==1: #File with 0s & 1s			
+			video_length = get_frame_without_ID(param)
+		elif binary_flag==0:  #File with frame numbers
+			video_length = get_frame_with_ID(param)
+		else:
+			print "PROBLEM WITH CSV INPUT FORMAT"
+
+		setattr(param, 'video_length', video_length)	
+
+		output_label(param)
+
+		create_sh(param,0)
 	
 
 	print "FINISHED"
