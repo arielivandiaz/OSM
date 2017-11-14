@@ -37,6 +37,7 @@ Parameters:
 	parameters.distance
 	parameters.users
 	parameters.video_length
+	parameters.output_path
 
 """
 
@@ -256,54 +257,201 @@ def get_video_info(video_name):
 
 	return length
 #/*********************************************************************************************    
-
-
-#Array to Frame without  Frame ID
-#A: Arreglo de 0 y 1
-# NOT FINISHED
-def array_to_frame_without_ID(video_name,file_csv,folder_output):
-
-
-	cap = cv2.VideoCapture(video_name)
-
-	length = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-
-	frame_id=0
-
-	file_csv=folder_output + '/' + file_csv 
+def count_zeros(file_csv):
 
 	frames=np.array(csv_to_matrix(file_csv)) 
-	folder_output=folder_output+'_'+video_name
+	zeros=0;
+	binary_flag=0
+
+	for i in frames[0]:
+
+		if i == '0':
+			zeros+=1	
+		if zeros>2:
+			binary_flag=1
+			break
+	#binary_flag = 1 => binary file
+	return binary_flag
+	
+
+
+def is_binary_selection(parameters):
+
+	files_binary=0;
+	file_binary_user=0;
+	file_binary_vsum=0;
+
+
+	file_binary_user =   count_zeros(parameters.users_csv)
+
+	file_binary_vsum =   count_zeros(parameters.vsum_csv)
+
+	if file_binary_user and file_binary_vsum:
+		files_binary=1
+	elif file_binary_user == file_binary_vsum:
+		files_binary=0
+	else:
+		files_binary=2
+		print "Conflict with CSV files format"
+
+	return files_binary #is a flag
+
+
+
+#/*********************************************************************************************    
+
+#Array to Frame without  Frame ID
+def get_frame_without_ID(parameters):
+
+
+	
+	VIDEO_NAME=	parameters.video
+	USERS_CSV=	parameters.users_csv
+	VSUM_CSV=	parameters.vsum_csv
+	FORMAT =  	parameters.format
+	FRAME_ID_OFFSET =  	parameters.offset
+	JPEG_QUALITY = parameters.quality
+
+
+	cap = cv2.VideoCapture(VIDEO_NAME)
+
+	if cap:
+		print "VIDEO OPENED"
+	else:
+		print "VIDEO NOT FOUND"
+
+	length = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) #Videl Lenght
+	fps =  int(cap.get(cv2.CAP_PROP_FPS)) #Videl Lenght
+	time_length = float(length/fps)
+
+	print "lenght" , length
+	print "fps" , fps
+	print "time_lenght" , time_length
+
+	frames=np.array(csv_to_matrix(USERS_CSV)) 
+
+	main_folder_output=VIDEO_NAME
+
+	main_folder_output = main_folder_output.split('/')[3] #Elminate the ../../ +
+
+	main_folder_output = main_folder_output.split('.')[0] #Elminate the file extension
+
+	main_folder_output = "../../output/" + main_folder_output
+
+	setattr(param, 'output_path', main_folder_output)
+
+	if os.path.exists(main_folder_output) == 0:     
+		os.mkdir(main_folder_output)
+	else:
+		print 'DIRECTORY', main_folder_output , 'EXISTS'
+
+	references_folder = main_folder_output + '/' + 'reference'
+	if os.path.exists(references_folder) == 0:      
+		os.mkdir(references_folder)
+	else:
+		print 'DIRECTORY', references_folder , 'EXISTS'
+
+	data_folder = main_folder_output + '/' + 'data'
+	if os.path.exists(data_folder) == 0:        
+		os.mkdir(data_folder)
+	else:
+		print 'DIRECTORY', data_folder , 'EXISTS'
+		
+	n_users = frames.shape[0]
+	
+	for user in range(0,n_users):
+
+		frame_detection=0
+		frame_id=0
+		length_array=len(frames[user])	
+
+		folder_output=references_folder +'/' + "user" + "%d" % (user+1 )
+
+		if os.path.exists(folder_output) == 0:          
+			os.mkdir(folder_output)
+		else:
+			print 'DIRECTORY', folder_output , 'EXISTS'
+
+
+		while (cap.isOpened()):
+			
+			ret, frame = cap.read()		
+
+			if int(frames[user][frame_id])==1:
+	
+				#The first argument of cap.set(), number 2 defines that parameter for setting the frame selection.
+				#Number 2 defines flag CV_CAP_PROP_POS_FRAMES which is a 0-based index of the frame to be decoded/captured next.
+				#The second argument defines the frame number in range 0.0-1.0
+				cap.set(1,frame_id+FRAME_ID_OFFSET);
+
+				#Read the next frame from the video. If you set frame 749 above then the code will return the last frame.
+				ret, frame = cap.read()
+			
+				frame_name = folder_output + '/' + 'Frame%d.jpeg' % (frame_id)          
+				if(JPEG_QUALITY!=0)	:
+					cv2.imwrite(frame_name, frame, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUALITY])		
+				else:
+					cv2.imwrite(frame_name, frame)
+				frame_detection+=1		
+
+			frame_id+=1
+
+			if frame_id>len(frames[user])-1:
+				break;
+			if frame_id==length:   
+					#print 'END OF VECTOR'      
+					break
+		
+		print 'USER',user+1 ,'FRAMES DETECTED:',frame_detection
+
+	#***************************************************************
+	#***************************************************************
+	frame_id=0
+
+	folder_output=data_folder
+	frames_VSUM=np.array(csv_to_matrix(VSUM_CSV)) 
+
+	length_array=len(frames_VSUM[0])
+
+		
 	if os.path.exists(folder_output) == 0:
-		print 'Folder Created :', folder_output
 		os.mkdir(folder_output)
+	else:
+		print 'DIRECTORY', folder_output, 'EXISTS'
+	
+	frame_detection	=0
 
-	print frames 
-	print '*' * 80
-	print
-	while (cap.isOpened()):
+	while (cap.isOpened()):	
+	
+		if int(frames_VSUM[0][frame_id])==1:
 			
-
-		display_loadging(length,frame_id,0)
-
-		if frames[frame_id]=='1':
-
 			
+			#The first argument of cap.set(), number 2 defines that parameter for setting the frame selection.
+			#Number 2 defines flag CV_CAP_PROP_POS_FRAMES which is a 0-based index of the frame to be decoded/captured next.
+			#The second argument defines the frame number in range 0.0-1.0
+			cap.set(1,frame_id+FRAME_ID_OFFSET);
+			#Read the next frame from the video. If you set frame 749 above then the code will return the last frame.
 			ret, frame = cap.read()
-			frame_name = folder_output + '/' + 'Frame%d' % (frame_id)	  + FORMAT		
-			cv2.imwrite(frame_name, frame, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUALITY])			
-			cv2.imwrite(frame_name, frame)
-
+			
+			frame_name = folder_output + '/' + 'Frame%d.jpeg' % (frame_id)          
+			if(JPEG_QUALITY!=0)	:
+					cv2.imwrite(frame_name, frame, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUALITY])		
+			else:
+					cv2.imwrite(frame_name, frame)
+			frame_detection+=1
+			
+		
 		frame_id+=1
-
+		if frame_id>len(frames_VSUM[0])-1:
+				break;
 		if frame_id==length:   
-				print 'END OF VECTOR'      
-				break
+			#print 'END OF VECTOR'      
+			break
+	
+	print 'FRAMES DETECTED:',frame_detection
 
 	cap.release()
-
-
-
+	return length
 
 
 
@@ -332,6 +480,7 @@ def get_frame_with_ID(parameters):
 	parameters.distance
 	parameters.users
 	parameters.video_length
+	parameters.output_path
 	"""
 
 	cap = cv2.VideoCapture(VIDEO_NAME)
@@ -353,10 +502,19 @@ def get_frame_with_ID(parameters):
 
 	frames=np.array(csv_to_matrix(USERS_CSV)) 
 
-	#main_folder_output=VIDEO_NAME
+	main_folder_output=VIDEO_NAME
 
-	main_folder_output=os.path.splitext(VIDEO_NAME)[0] #Elminate the file extension
-	
+	main_folder_output = main_folder_output.split('/')[3] #Elminate the ../../ +
+
+	main_folder_output = main_folder_output.split('.')[0] #Elminate the file extension
+
+	main_folder_output = "../../output/" + main_folder_output
+
+	setattr(param, 'output_path', main_folder_output)
+
+	print main_folder_output
+
+
 	if os.path.exists(main_folder_output) == 0:		
 		os.mkdir(main_folder_output)
 	else:
@@ -512,11 +670,11 @@ def create_sh(parameters):
 	file.write('echo "Simple zone"\n')
 
 	if method==False:
-		command='../../build/osm --method bhi -e {0} -d {1} -n {2} -f {3} -r "{4}/reference" -i "{4}/data/" --verbose \n'
-		file.write(command.format(epsilon,distance,users,length,os.path.splitext(video_name)[0]))
+		command='../../src/build/osm --method bhi -e {0} -d {1} -n {2} -f {3} -r "{4}/reference" -i "{4}/data/" --verbose \n'
+		file.write(command.format(epsilon,distance,users,length,parameters.output_path))
 	else:
-		command='../../build/osm --method cus -e {0} -n {1} -f {2} -r "{3}/reference" -i "{3}/data/" --verbose \n'
-		file.write(command.format(epsilon,users,length,os.path.splitext(video_name)[0]))
+		command='../../src/build/osm --method cus -e {0} -n {1} -f {2} -r "{3}/reference" -i "{3}/data/" --verbose \n'
+		file.write(command.format(epsilon,users,length,parameters.output_path))
 
 	
 	file.close()
@@ -540,11 +698,11 @@ def addline_sh(parameters):
 	file.write('echo "Simple zone"\n')
 
 	if method==False:
-		command='../../build/osm --method bhi -e {0} -d {1} -n {2} -f {3} -r "{4}/reference" -i "{4}/data/" --verbose \n'
-		file.write(command.format(epsilon,distance,users,length,os.path.splitext(video_name)[0]))
+		command='../../src/build/osm --method bhi -e {0} -d {1} -n {2} -f {3} -r "{4}/reference" -i "{4}/data/" --verbose \n'
+		file.write(command.format(epsilon,distance,users,length,parameters.output_path))
 	else:
-		command='../../build/osm --method cus -e {0} -n {1} -f {2} -r "{3}/reference" -i "{3}/data/" --verbose \n'
-		file.write(command.format(epsilon,users,length,os.path.splitext(video_name)[0]))
+		command='../../src/build/osm --method cus -e {0} -n {1} -f {2} -r "{3}/reference" -i "{3}/data/" --verbose \n'
+		file.write(command.format(epsilon,users,length,parameters.output_path))
 
 	
 	file.close()
@@ -574,7 +732,14 @@ if __name__ == '__main__':
 
 	#prin_objet(param)
 
-	video_length = get_frame_with_ID(param)
+	binary_flag = is_binary_selection(param)
+
+	if binary_flag==1: #File with 0s & 1s			
+		video_length = get_frame_without_ID(param)
+	elif binary_flag==0:  #File with frame numbers
+		video_length = get_frame_with_ID(param)
+	else:
+		print "PROBLEM WITH CSV INPUT FORMAT"
 
 	setattr(param, 'video_length', video_length)	
 

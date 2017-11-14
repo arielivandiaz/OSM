@@ -82,6 +82,7 @@ void MethodResolver::evaluate(float epsilon, int distance, string referencePath,
 }
 
 void MethodResolver::printResults(string referencePath, string dataPath) {
+    
     if( printVerbose ) {
         cout << "CUSa: " << this->CUSa << endl;
         cout << "CUSe: " << this->CUSe << endl;
