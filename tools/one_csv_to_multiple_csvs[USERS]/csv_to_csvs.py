@@ -58,6 +58,50 @@ if __name__ == '__main__':
 
 	i=0
 	while i<length_max-1:
+		if matrix[i]:
+			if matrix[i][0]:
+				if(len(matrix[i][0])>2):
+					if matrix[i][0][0]:
+						if matrix[i][0][0]=='.':
+							#Folder
+							csv_name =   matrix[i][0] 
+							csv_name = csv_name.replace(".", "")
+							csv_name = csv_name.replace("/", "")
+							csv_name +=  '.csv'		
+							csv_name = folder + "/" + csv_name
+							print  csv_name
+		i+=1
+		if i<length_max-1:
+
+			file = open(csv_name,'w')
+			if matrix[i]:
+				if matrix[i][0]:
+					if matrix[i][0][0]:
+						while matrix[i][0][0]!='.':
+
+							frames = str(matrix[i]).replace("'", "" )
+					
+							frames = frames.replace(" ", "" )
+							frames = frames.replace("[", "" )
+							frames = frames.replace("]", "" )
+							print frames
+							file.write(frames)
+							file.write('\n')
+							i+=1
+							if i==length_max:
+								break
+
+							
+
+		
+
+		file.close()
+
+		
+
+
+	"""
+	while i<length_max-1:
 		if(len(matrix[i][0])>2):
 			csv_name =   matrix[i][0] 
 			csv_name = csv_name.replace(".", "")
@@ -80,6 +124,6 @@ if __name__ == '__main__':
 		file.close()
 
 		i+=1
-
+	"""
 
 	print "SUCCESS"
