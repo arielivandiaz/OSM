@@ -791,7 +791,7 @@ if __name__ == '__main__':
 		videos=multiple_metric(param)
 		videos_path=param.video
 		users_path=param.users_csv
-		vsum_path=param.vsum_csv
+		vsum_path=param.vsum_cs
 
 		output_label(param)	
 
@@ -802,9 +802,7 @@ if __name__ == '__main__':
 			param.video=videos_path + "/" + videos[i]			
 			param.users_csv=users_path + "/" + videos[i].split('.')[0]
 			param.vsum_csv=vsum_path + "/" + videos[i].split('.')[0]
-			#print param.video
-			#print param.vsum_csv
-			#print param.users_csv
+
 
 			binary_flag = is_binary_selection(param)
 
@@ -828,8 +826,6 @@ if __name__ == '__main__':
 
 
 		
-
-
 	else: ################################################################
 	
 		binary_flag = is_binary_selection(param)
