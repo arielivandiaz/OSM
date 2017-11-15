@@ -35,7 +35,9 @@ def get_superframes_intervals(data):
     onSuperframe = False
 
     for index, stringNumber in enumerate(data):
+        
         number = int(stringNumber)
+
         if number != 0 and not onSuperframe:
             # Superframe starts
             array.append(index)
