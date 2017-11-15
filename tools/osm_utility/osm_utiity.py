@@ -796,8 +796,8 @@ if __name__ == '__main__':
 		output_label(param)	
 
 
-		#for i in range(0,len(videos)):
-		for i in range(0,5):
+		for i in range(0,len(videos)):
+		#for i in range(0,5):
 		
 			param.video=videos_path + "/" + videos[i]			
 			param.users_csv=users_path + "/" + videos[i].split('.')[0]
