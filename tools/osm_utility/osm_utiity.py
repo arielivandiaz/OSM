@@ -337,7 +337,9 @@ def get_frame_without_ID(parameters):
 
 	main_folder_output = main_folder_output.split('.')[0] #Elminate the file extension
 
-	main_folder_output = "../../output/" + main_folder_output
+	#main_folder_output = "../../output/" + main_folder_output #Run from osm_utility folder
+
+	main_folder_output = "../output/" + main_folder_output
 
 	setattr(param, 'output_path', main_folder_output)
 
@@ -509,7 +511,10 @@ def get_frame_with_ID(parameters):
 
 	main_folder_output = main_folder_output.split('.')[0] #Elminate the file extension
 
-	main_folder_output = "../../output/" + main_folder_output
+	#main_folder_output = "../../output/" + main_folder_output #Run from osm_utility folder
+
+	main_folder_output = "../output/" + main_folder_output
+
 
 	setattr(param, 'output_path', main_folder_output)
 
@@ -791,7 +796,7 @@ if __name__ == '__main__':
 		videos=multiple_metric(param)
 		videos_path=param.video
 		users_path=param.users_csv
-		vsum_path=param.vsum_cs
+		vsum_path=param.vsum_csv
 
 		output_label(param)	
 
