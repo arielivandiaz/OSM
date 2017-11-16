@@ -17,17 +17,3 @@ Evaluation date: 19-24-43_16-11-2017
 ../output/v27/reference vs ../output/v27/data/		-0.20000		-0.20000		-0.20000		-0.20000		-0.20000		-nan
 ../output/v27/reference vs ../output/v27/data/		0.00000		0.00000		-0.20000		0.00000		0.00000		0.00000
 ../output/v27/reference vs ../output/v27/data/		0.00000		0.00000		-1.00000		0.00000		0.00000		0.00000
-
-********************************************************************************************************************************************
-Evaluation date: 19-32-35_16-11-2017
-	-distance	=	120
-	-users_csv	=	../user_summaries/VSUMM/v27
-	-users	=	5
-	-video_length	=	3192
-	-format	=	.jpg
-	-epsilon	=	0.5
-	-vsum_csv	=	../auto_summaries/VSUMM1/v27
-	-output_path	=	../output/v27
-	-video	=	../videos/VSUMM/v27.mpg
-********************************************************************************************************************************************
-			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa

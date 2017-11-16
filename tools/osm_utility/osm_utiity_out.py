@@ -337,9 +337,9 @@ def get_frame_without_ID(parameters):
 
 	main_folder_output = main_folder_output.split('.')[0] #Elminate the file extension
 
-	main_folder_output = "../../output/" + main_folder_output #Run from osm_utility folder
+	#main_folder_output = "../../output/" + main_folder_output #Run from osm_utility folder
 
-	#main_folder_output = "../output/" + main_folder_output
+	main_folder_output = "../output/" + main_folder_output
 
 	setattr(param, 'output_path', main_folder_output)
 
@@ -390,7 +390,8 @@ def get_frame_without_ID(parameters):
 				#Read the next frame from the video. If you set frame 749 above then the code will return the last frame.
 				ret, frame = cap.read()
 			
-				frame_name = folder_output + '/' + 'Frame%d.jpeg' % (frame_id)          
+				frame_name = folder_output + '/' + 'Frame%d' % (frame_id)	  + '.' + FORMAT 
+
 				if(JPEG_QUALITY!=0)	:
 					cv2.imwrite(frame_name, frame, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUALITY])		
 				else:
@@ -436,7 +437,7 @@ def get_frame_without_ID(parameters):
 			#Read the next frame from the video. If you set frame 749 above then the code will return the last frame.
 			ret, frame = cap.read()
 			
-			frame_name = folder_output + '/' + 'Frame%d.jpeg' % (frame_id)          
+			frame_name = folder_output + '/' + 'Frame%d' % (frame_id)	  + '.' + FORMAT      
 			if(JPEG_QUALITY!=0)	:
 					cv2.imwrite(frame_name, frame, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUALITY])		
 			else:
@@ -511,9 +512,9 @@ def get_frame_with_ID(parameters):
 
 	main_folder_output = main_folder_output.split('.')[0] #Elminate the file extension
 
-	main_folder_output = "../../output/" + main_folder_output #Run from osm_utility folder
+	#main_folder_output = "../../output/" + main_folder_output #Run from osm_utility folder
 
-	#main_folder_output = "../output/" + main_folder_output
+	main_folder_output = "../output/" + main_folder_output
 
 
 	setattr(param, 'output_path', main_folder_output)
@@ -577,7 +578,7 @@ def get_frame_with_ID(parameters):
 				#Read the next frame from the video. If you set frame 749 above then the code will return the last frame.
 				ret, frame = cap.read()
 				
-				frame_name = folder_output + '/' + 'Frame%d' % (frame_id)	 + FORMAT
+				frame_name = folder_output + '/' + 'Frame%d' % (frame_id)	 + '.' + FORMAT
 				if(JPEG_QUALITY!=0)	:
 					cv2.imwrite(frame_name, frame, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUALITY])		
 				else:
@@ -629,11 +630,12 @@ def get_frame_with_ID(parameters):
 			#Read the next frame from the video. If you set frame 749 above then the code will return the last frame.
 			ret, frame = cap.read()
 			
-			frame_name = folder_output + '/' + 'Frame%d' % (frame_id)	  + FORMAT
-			if(JPEG_QUALITY!=0)	:
-				cv2.imwrite(frame_name, frame, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUALITY])	
-			else:
-				cv2.imwrite(frame_name, frame)	
+			frame_name = folder_output + '/' + 'Frame%d' % (frame_id)	  + '.' + FORMAT
+			if(frame_id<length):
+				if(JPEG_QUALITY!=0)	:
+					cv2.imwrite(frame_name, frame, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUALITY])	
+				else:
+					cv2.imwrite(frame_name, frame)	
 			#cv2.imwrite(frame_name, frame)
 			frame_detection+=1
 		
@@ -680,10 +682,10 @@ def create_sh(parameters,path):
 
 
 	if method==False:
-		command='../../src/build/osm --method bhi -e {0} -d {1} -n {2} -f {3} -r "{4}/reference" -i "{4}/data/" --verbose \n'
+		command='../src/build/osm --method bhi -e {0} -d {1} -n {2} -f {3} -r "{4}/reference" -i "{4}/data/" --verbose \n'
 		file.write(command.format(epsilon,distance,users,length,parameters.output_path))
 	else:
-		command='../../src/build/osm --method cus -e {0} -n {1} -f {2} -r "{3}/reference" -i "{3}/data/" --verbose \n'
+		command='../src/build/osm --method cus -e {0} -n {1} -f {2} -r "{3}/reference" -i "{3}/data/" --verbose \n'
 		file.write(command.format(epsilon,users,length,parameters.output_path))
 
 	
@@ -708,10 +710,10 @@ def addline_sh(parameters):
 
 
 	if method==False:
-		command='../../src/build/osm --method bhi -e {0} -d {1} -n {2} -f {3} -r "{4}/reference" -i "{4}/data/" --verbose \n'
+		command='../src/build/osm --method bhi -e {0} -d {1} -n {2} -f {3} -r "{4}/reference" -i "{4}/data/" --verbose \n'
 		file.write(command.format(epsilon,distance,users,length,parameters.output_path))
 	else:
-		command='../../src/build/osm --method cus -e {0} -n {1} -f {2} -r "{3}/reference" -i "{3}/data/" --verbose \n'
+		command='../src/build/osm --method cus -e {0} -n {1} -f {2} -r "{3}/reference" -i "{3}/data/" --verbose \n'
 		file.write(command.format(epsilon,users,length,parameters.output_path))
 
 	
