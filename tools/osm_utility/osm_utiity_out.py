@@ -14,6 +14,7 @@ import datetime
 import argparse
 from os import walk
 
+import os.path as path
 
 
 
@@ -63,7 +64,8 @@ def get_args():
 	parser.add_argument('-e', nargs='?',   type=float, help='Epsilon')
 	parser.add_argument('-d', nargs='?',   type=int, help='Distance parameter for bhi method')
 	parser.add_argument('-u', nargs='?',   type=int, help='Number of users')
-
+	parser.add_argument('-nd', '--nodata', action='store_true', help='No import data summaries')
+	parser.add_argument('-ush', '--updatesh', action='store_true', help='No make a new sh, only update')
 
 	
 	return vars(parser.parse_args())
@@ -157,6 +159,17 @@ def process_args():
 		setattr(parameters, 'users', args['u'])
 	else:
 		setattr(parameters, 'users', 5)
+
+	if(args['nodata']):
+		setattr(parameters, 'no_data', 1)
+	else:
+		setattr(parameters, 'no_data', 0)
+
+	if(args['updatesh']):
+		setattr(parameters, 'updatesh', 1)
+	else:
+		setattr(parameters, 'updatesh', 0)
+
 
 
 
@@ -410,49 +423,51 @@ def get_frame_without_ID(parameters):
 
 	#***************************************************************
 	#***************************************************************
-	frame_id=0
 
-	folder_output=data_folder
-	frames_VSUM=np.array(csv_to_matrix(VSUM_CSV)) 
+	if not parameters.no_data:
+		frame_id=0
 
-	length_array=len(frames_VSUM[0])
+		folder_output=data_folder
+		frames_VSUM=np.array(csv_to_matrix(VSUM_CSV)) 
 
+		length_array=len(frames_VSUM[0])
+
+			
+		if os.path.exists(folder_output) == 0:
+			os.mkdir(folder_output)
+		else:
+			print 'DIRECTORY', folder_output, 'EXISTS'
 		
-	if os.path.exists(folder_output) == 0:
-		os.mkdir(folder_output)
-	else:
-		print 'DIRECTORY', folder_output, 'EXISTS'
-	
-	frame_detection	=0
+		frame_detection	=0
 
-	while (cap.isOpened()):	
-	
-		if int(frames_VSUM[0][frame_id])==1:
-			
-			
-			#The first argument of cap.set(), number 2 defines that parameter for setting the frame selection.
-			#Number 2 defines flag CV_CAP_PROP_POS_FRAMES which is a 0-based index of the frame to be decoded/captured next.
-			#The second argument defines the frame number in range 0.0-1.0
-			cap.set(1,frame_id+FRAME_ID_OFFSET);
-			#Read the next frame from the video. If you set frame 749 above then the code will return the last frame.
-			ret, frame = cap.read()
-			
-			frame_name = folder_output + '/' + 'Frame%d' % (frame_id)	  + '.' + FORMAT      
-			if(JPEG_QUALITY!=0)	:
-					cv2.imwrite(frame_name, frame, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUALITY])		
-			else:
-					cv2.imwrite(frame_name, frame)
-			frame_detection+=1
-			
+		while (cap.isOpened()):	
 		
-		frame_id+=1
-		if frame_id>len(frames_VSUM[0])-1:
-				break;
-		if frame_id==length:   
-			#print 'END OF VECTOR'      
-			break
-	
-	print 'FRAMES DETECTED:',frame_detection
+			if int(frames_VSUM[0][frame_id])==1:
+				
+				
+				#The first argument of cap.set(), number 2 defines that parameter for setting the frame selection.
+				#Number 2 defines flag CV_CAP_PROP_POS_FRAMES which is a 0-based index of the frame to be decoded/captured next.
+				#The second argument defines the frame number in range 0.0-1.0
+				cap.set(1,frame_id+FRAME_ID_OFFSET);
+				#Read the next frame from the video. If you set frame 749 above then the code will return the last frame.
+				ret, frame = cap.read()
+				
+				frame_name = folder_output + '/' + 'Frame%d' % (frame_id)	  + '.' + FORMAT      
+				if(JPEG_QUALITY!=0)	:
+						cv2.imwrite(frame_name, frame, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUALITY])		
+				else:
+						cv2.imwrite(frame_name, frame)
+				frame_detection+=1
+				
+			
+			frame_id+=1
+			if frame_id>len(frames_VSUM[0])-1:
+					break;
+			if frame_id==length:   
+				#print 'END OF VECTOR'      
+				break
+		
+		print 'FRAMES DETECTED:',frame_detection
 
 	cap.release()
 	return length
@@ -597,55 +612,54 @@ def get_frame_with_ID(parameters):
 	#vsum
 
 
+	if not parameters.no_data:
+		frame_id=0
 
-	frame_id=0
+		frame_detection=0;
 
-	frame_detection=0;
+		folder_output=data_folder
+		frames_VSUM=np.array(csv_to_matrix(VSUM_CSV)) 
 
-	folder_output=data_folder
-	frames_VSUM=np.array(csv_to_matrix(VSUM_CSV)) 
+		length_array=len(frames_VSUM[0])
 
-	length_array=len(frames_VSUM[0])
-
-		
-	if os.path.exists(folder_output) == 0:
-		os.mkdir(folder_output)
-	else:
-		print 'DIRECTORY', folder_output, 'EXISTS'
-
-		
-	while (cap.isOpened()):
 			
+		if os.path.exists(folder_output) == 0:
+			os.mkdir(folder_output)
+		else:
+			print 'DIRECTORY', folder_output, 'EXISTS'
 
-		#print 'id',frame_id,'  detect',frame_detection 
-		if frame_detection==length_array:
-			break
-		if int(frames_VSUM[0][frame_detection])==frame_id:
-			#print 'frame detected' , frame_id
 			
-			#The first argument of cap.set(), number 2 defines that parameter for setting the frame selection.
-			#Number 2 defines flag CV_CAP_PROP_POS_FRAMES which is a 0-based index of the frame to be decoded/captured next.
-			#The second argument defines the frame number in range 0.0-1.0
-			cap.set(1,frame_id+FRAME_ID_OFFSET);
-			#Read the next frame from the video. If you set frame 749 above then the code will return the last frame.
-			ret, frame = cap.read()
+		while (cap.isOpened()):
+				
+
+			#print 'id',frame_id,'  detect',frame_detection 
+			if frame_detection==length_array:
+				break
+			if int(frames_VSUM[0][frame_detection])==frame_id:
+				#print 'frame detected' , frame_id
+				
+				#The first argument of cap.set(), number 2 defines that parameter for setting the frame selection.
+				#Number 2 defines flag CV_CAP_PROP_POS_FRAMES which is a 0-based index of the frame to be decoded/captured next.
+				#The second argument defines the frame number in range 0.0-1.0
+				cap.set(1,frame_id+FRAME_ID_OFFSET);
+				#Read the next frame from the video. If you set frame 749 above then the code will return the last frame.
+				ret, frame = cap.read()
+				
+				frame_name = folder_output + '/' + 'Frame%d' % (frame_id)	  + '.' + FORMAT
+				if(frame_id<length):
+					if(JPEG_QUALITY!=0)	:
+						cv2.imwrite(frame_name, frame, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUALITY])	
+					else:
+						cv2.imwrite(frame_name, frame)	
+				#cv2.imwrite(frame_name, frame)
+				frame_detection+=1
 			
-			frame_name = folder_output + '/' + 'Frame%d' % (frame_id)	  + '.' + FORMAT
-			if(frame_id<length):
-				if(JPEG_QUALITY!=0)	:
-					cv2.imwrite(frame_name, frame, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUALITY])	
-				else:
-					cv2.imwrite(frame_name, frame)	
-			#cv2.imwrite(frame_name, frame)
-			frame_detection+=1
+			frame_id+=1
+
+			if frame_id==length:   
+				#print 'END OF VECTOR'      
+				break
 		
-		frame_id+=1
-
-		if frame_id==length:   
-			#print 'END OF VECTOR'      
-			break
-	
-	print 'FRAMES DETECTED:',frame_detection
 
 	cap.release()
 	return length
@@ -790,7 +804,7 @@ if __name__ == '__main__':
 		parameters.output_path
 
 	"""
-
+	counter=0
 
 	param = process_args() 
 
@@ -836,19 +850,26 @@ if __name__ == '__main__':
 	else: ################################################################
 	
 		binary_flag = is_binary_selection(param)
-
+		
 		if binary_flag==1: #File with 0s & 1s			
 			video_length = get_frame_without_ID(param)
+			
 		elif binary_flag==0:  #File with frame numbers
 			video_length = get_frame_with_ID(param)
+			
 		else:
 			print "PROBLEM WITH CSV INPUT FORMAT"
 
 		setattr(param, 'video_length', video_length)	
 
 		output_label(param)
-
-		create_sh(param,0)
+		
+		if param.updatesh:
+			if path.exists('run.sh'):
+				addline_sh(param)
+			else:
+				create_sh(param,0)
 	
+
 
 	print "FINISHED"

@@ -61,6 +61,17 @@ tests:
 17 - VSUM 2 BHI -d 80
 18 - VSUM 2 BHI -d 200
 
+**************************
+
+19 - DT		 CUS
+20 - VISTO	 CUS 
+21 - OVS 	 CUS
+
+
+22 - DT		 BHI
+23 - VISTO	 BHI 
+24 - OVS 	 BHI
+
 
 
 

@@ -1,0 +1,5 @@
+../output/v21/reference vs ../output/v21/data/	1.00000	16.11515	0.06500	1.00000	0.12207	0.11754
+../output/v25/reference vs ../output/v25/data/	0.52576	0.62622	0.45714	0.52576	0.48906	0.48486
+../output/v21/reference vs ../output/v21/data/	1.00000	16.11515	0.06500	1.00000	0.12207	0.11754
+../output/v22/reference vs ../output/v22/data/	0.91000	0.57000	0.63333	0.91000	0.74687	0.74002
+../output/v23/reference vs ../output/v23/data/	0.77310	2.43976	0.25385	0.77310	0.38220	0.37321
