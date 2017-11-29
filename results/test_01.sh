@@ -66,7 +66,7 @@ sh run.sh
 python ../tools/osm_utility/osm_utiity_out.py ../videos/VSUMM/v64.mpg ../user_summaries/VSUMM/v64 ../auto_summaries/VSUMM1/v64 -cus -q 90 -l test01
 sh run.sh	
 python ../tools/osm_utility/osm_utiity_out.py ../videos/VSUMM/v64.mpg ../user_summaries/VSUMM/v64 ../auto_summaries/VSUMM1/v64 -cus  -f bmp -l test01
-
+sh run.sh	
 
 python ../tools/get_average/get_average.py output.csv averange.txt test01      
 

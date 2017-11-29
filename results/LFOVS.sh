@@ -151,4 +151,6 @@ python ../tools/osm_utility/osm_utiity_out.py ../videos/VSUMM/v69.mpg ../user_su
 python ../tools/osm_utility/osm_utiity_out.py ../videos/VSUMM/v70.mpg ../user_summaries/VSUMM/v70 ../auto_summaries/VSUMM1/v70 -cus -l LFOVS -nd -ush
 ./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v70.mpg -o=../output/v70/data -s=0.4 -n=0.96 -d=0.2 -t=30 
 
+python ../tools/get_average/get_average.py output.csv averange.txt LFOVS      
+
 sh run.sh
