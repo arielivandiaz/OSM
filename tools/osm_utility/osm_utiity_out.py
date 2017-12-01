@@ -65,7 +65,7 @@ def get_args():
 	parser.add_argument('-d', nargs='?',   type=int, help='Distance parameter for bhi method')
 	parser.add_argument('-u', nargs='?',   type=int, help='Number of users')
 
-	parser.add_argument('-lfovs',   action='store_true', help='Run LFOVS ')
+	parser.add_argument('-lfovs', '--lfovs', action='store_true',  help='Run LFOVS ')
 	parser.add_argument('-lfovs_s', nargs='?', type=float,  help='LFOVS parameters')
 	parser.add_argument('-lfovs_n', nargs='?', type=float,  help='LFOVS parameters')
 	parser.add_argument('-lfovs_d', nargs='?', type=float,  help='LFOVS parameters')
@@ -456,7 +456,7 @@ def get_frame_without_ID(parameters):
 	#***************************************************************
 
 	if not parameters.lfovs:
-		print "a"*155
+		
 		frame_id=0
 
 		folder_output=data_folder
@@ -645,7 +645,7 @@ def get_frame_with_ID(parameters):
 
 
 	if not parameters.lfovs:
-		print "a"*155
+
 		frame_id=0
 
 		frame_detection=0;
