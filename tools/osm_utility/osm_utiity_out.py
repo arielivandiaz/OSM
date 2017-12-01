@@ -65,12 +65,12 @@ def get_args():
 	parser.add_argument('-d', nargs='?',   type=int, help='Distance parameter for bhi method')
 	parser.add_argument('-u', nargs='?',   type=int, help='Number of users')
 
-	parser.add_argument('-lfovs', '--lfvos', action='store_true', help='Run LFOVS ')
-	parser.add_argument('-lfovs_s', '--lfovs_s', action='store_true', help='LFOVS parameters')
-	parser.add_argument('-lfovs_n', '--lfovs_n', action='store_true', help='LFOVS parameters')
-	parser.add_argument('-lfovs_d', '--lfovs_d', action='store_true', help='LFOVS parameters')
-	parser.add_argument('-lfovs_t', '--lfovs_t', action='store_true', help='LFOVS parameters')
-	parser.add_argument('-lfovs_e', '--lfovs_e', action='store_true', help='LFOVS parameters')
+	parser.add_argument('-lfovs',   action='store_true', help='Run LFOVS ')
+	parser.add_argument('-lfovs_s', type=float, action='store_true', help='LFOVS parameters')
+	parser.add_argument('-lfovs_n', type=float, action='store_true', help='LFOVS parameters')
+	parser.add_argument('-lfovs_d', type=float, action='store_true', help='LFOVS parameters')
+	parser.add_argument('-lfovs_t', type=float, action='store_true', help='LFOVS parameters')
+	parser.add_argument('-lfovs_e', type=float, action='store_true', help='LFOVS parameters')
 	parser.add_argument('-ush', '--updatesh', action='store_true', help='No make a new sh, only update')
 
 
