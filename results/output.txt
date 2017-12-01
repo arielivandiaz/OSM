@@ -67,3 +67,212 @@ fvos		Evaluation date: 01-13-51_01-12-2017
 ../output/v26/reference vs ../output/v26/data/		0.69286		0.42024		0.72941		0.69286		0.71066		0.68380
 ../output/v50/reference vs ../output/v50/data/		0.95278		0.21167		0.85000		0.95278		0.89846		0.88835
 ../output/v51/reference vs ../output/v51/data/		0.82619		0.29762		0.75000		0.82619		0.78625		0.78374
+
+********************************************************************************************************************************************
+fvos		Evaluation date: 01-34-21_01-12-2017
+	-lfovs_n	=	0.95
+	-distance	=	120
+	-users_csv	=	../user_summaries/VSUMM
+	-users	=	5
+	-format	=	.jpg
+	-epsilon	=	0.5
+	-vsum_csv	=	../auto_summaries/VSUMM1
+	-lfovs_e	=	3.0
+	-label	=	fvos
+	-video	=	../videos/VSUMM
+	-lfovs_d	=	0.19
+	-lfovs_s	=	0.39
+	-group	=	1
+	-lfovs_t	=	30.0
+	-method	=	1
+********************************************************************************************************************************************
+			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa
+
+********************************************************************************************************************************************
+fvos		Evaluation date: 01-37-52_01-12-2017
+	-lfovs_n	=	0.95
+	-distance	=	120
+	-users_csv	=	../user_summaries/VSUMM
+	-users	=	5
+	-format	=	.jpg
+	-epsilon	=	0.5
+	-vsum_csv	=	../auto_summaries/VSUMM1
+	-lfovs_e	=	3.0
+	-label	=	fvos
+	-video	=	../videos/VSUMM
+	-lfovs_d	=	0.19
+	-lfovs_s	=	0.39
+	-group	=	1
+	-lfovs_t	=	30.0
+	-method	=	1
+********************************************************************************************************************************************
+			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa
+
+********************************************************************************************************************************************
+fvos		Evaluation date: 01-41-46_01-12-2017
+	-lfovs_n	=	0.95
+	-distance	=	120
+	-users_csv	=	../user_summaries/VSUMM
+	-users	=	5
+	-format	=	.jpg
+	-epsilon	=	0.5
+	-vsum_csv	=	../auto_summaries/VSUMM1
+	-lfovs_e	=	3.0
+	-label	=	fvos
+	-video	=	../videos/VSUMM
+	-lfovs_d	=	0.19
+	-lfovs_s	=	0.39
+	-group	=	1
+	-lfovs_t	=	30.0
+	-method	=	1
+********************************************************************************************************************************************
+			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa
+
+********************************************************************************************************************************************
+Evaluation date: 01-43-54_01-12-2017
+	-lfovs_n	=	0.95
+	-distance	=	120
+	-users_csv	=	../user_summaries/VSUMM
+	-users	=	5
+	-format	=	.jpg
+	-epsilon	=	0.5
+	-vsum_csv	=	../auto_summaries/VSUMM1
+	-lfovs_e	=	3.0
+	-lfovs	=	1
+	-video	=	../videos/VSUMM
+	-lfovs_d	=	0.19
+	-lfovs_s	=	0.39
+	-group	=	1
+	-lfovs_t	=	30.0
+	-method	=	1
+********************************************************************************************************************************************
+			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa
+
+********************************************************************************************************************************************
+Evaluation date: 01-46-48_01-12-2017
+	-lfovs_n	=	0.95
+	-distance	=	120
+	-users_csv	=	../user_summaries/VSUMM
+	-users	=	5
+	-format	=	.jpg
+	-epsilon	=	0.5
+	-vsum_csv	=	../auto_summaries/VSUMM1
+	-lfovs_e	=	3.0
+	-lfovs	=	1
+	-video	=	../videos/VSUMM
+	-lfovs_d	=	0.19
+	-lfovs_s	=	0.39
+	-group	=	1
+	-lfovs_t	=	30.0
+	-method	=	1
+********************************************************************************************************************************************
+			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa
+
+********************************************************************************************************************************************
+Evaluation date: 01-48-52_01-12-2017
+	-lfovs_n	=	0.95
+	-distance	=	120
+	-users_csv	=	../user_summaries/VSUMM
+	-users	=	5
+	-format	=	.jpg
+	-epsilon	=	0.5
+	-vsum_csv	=	../auto_summaries/VSUMM1
+	-lfovs_e	=	3.0
+	-lfovs	=	1
+	-video	=	../videos/VSUMM
+	-lfovs_d	=	0.19
+	-lfovs_s	=	0.39
+	-group	=	1
+	-lfovs_t	=	30.0
+	-method	=	1
+********************************************************************************************************************************************
+			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa
+
+********************************************************************************************************************************************
+Evaluation date: 01-53-04_01-12-2017
+	-lfovs_n	=	0.95
+	-distance	=	120
+	-users_csv	=	../user_summaries/VSUMM
+	-users	=	5
+	-format	=	.jpg
+	-epsilon	=	0.5
+	-vsum_csv	=	../auto_summaries/VSUMM1
+	-lfovs_e	=	3
+	-lfovs	=	1
+	-video	=	../videos/VSUMM
+	-lfovs_d	=	0.19
+	-lfovs_s	=	0.39
+	-group	=	1
+	-lfovs_t	=	30.0
+	-method	=	1
+********************************************************************************************************************************************
+			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa
+
+********************************************************************************************************************************************
+Evaluation date: 01-56-20_01-12-2017
+	-lfovs_n	=	0.96
+	-distance	=	120
+	-users_csv	=	../user_summaries/VSUMM
+	-users	=	5
+	-format	=	.jpg
+	-epsilon	=	0.5
+	-vsum_csv	=	../auto_summaries/VSUMM1
+	-lfovs_e	=	3
+	-lfovs	=	1
+	-video	=	../videos/VSUMM
+	-lfovs_d	=	0.25
+	-lfovs_s	=	0.4
+	-group	=	1
+	-lfovs_t	=	30.0
+	-method	=	1
+********************************************************************************************************************************************
+			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa
+
+********************************************************************************************************************************************
+Evaluation date: 01-57-40_01-12-2017
+	-lfovs_n	=	0.96
+	-distance	=	120
+	-users_csv	=	../user_summaries/VSUMM
+	-users	=	5
+	-format	=	.jpg
+	-epsilon	=	0.5
+	-vsum_csv	=	../auto_summaries/VSUMM1
+	-lfovs_e	=	3
+	-lfovs	=	1
+	-video	=	../videos/VSUMM
+	-lfovs_d	=	0.25
+	-lfovs_s	=	0.4
+	-group	=	1
+	-lfovs_t	=	30.0
+	-method	=	1
+********************************************************************************************************************************************
+			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa
+
+********************************************************************************************************************************************
+Evaluation date: 02-02-54_01-12-2017
+	-lfovs_n	=	0.96
+	-distance	=	120
+	-users_csv	=	../user_summaries/VSUMM
+	-users	=	5
+	-format	=	.jpg
+	-epsilon	=	0.5
+	-vsum_csv	=	../auto_summaries/VSUMM1
+	-lfovs_e	=	3
+	-lfovs	=	1
+	-video	=	../videos/VSUMM
+	-lfovs_d	=	0.25
+	-lfovs_s	=	0.4
+	-group	=	1
+	-lfovs_t	=	30.0
+	-method	=	1
+********************************************************************************************************************************************
+			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa
+../output/v46/reference vs ../output/v46/data/		1.00000		0.92444		0.54286		1.00000		0.70370		0.69573
+../output/v22/reference vs ../output/v22/data/		0.75333		0.23333		0.80000		0.75333		0.77597		0.76942
+../output/v55/reference vs ../output/v55/data/		1.00000		1.67000		0.42222		1.00000		0.59375		0.58035
+../output/v31/reference vs ../output/v31/data/		0.40798		0.50499		0.47500		0.40798		0.43895		0.43027
+../output/v62/reference vs ../output/v62/data/		0.78333		0.06667		0.93333		0.78333		0.85178		0.84743
+../output/v29/reference vs ../output/v29/data/		0.34833		0.60167		0.40000		0.34833		0.37238		0.36248
+../output/v23/reference vs ../output/v23/data/		0.55119		0.80810		0.41818		0.55119		0.47556		0.46628
+../output/v49/reference vs ../output/v49/data/		0.57410		0.36013		0.61667		0.57410		0.59462		0.59132
+../output/v32/reference vs ../output/v32/data/		0.00000		0.00000		-1.00000		0.00000		0.00000		0.00000
