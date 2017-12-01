@@ -67,6 +67,7 @@ def get_args():
 
 	parser.add_argument('-lfovs', '--lfvos', action='store_true', help='Run LFOVS ')
 	parser.add_argument('-lfovs_s', '--lfovs_s', action='store_true', help='LFOVS parameters')
+	parser.add_argument('-lfovs_n', '--lfovs_n', action='store_true', help='LFOVS parameters')
 	parser.add_argument('-lfovs_d', '--lfovs_d', action='store_true', help='LFOVS parameters')
 	parser.add_argument('-lfovs_t', '--lfovs_t', action='store_true', help='LFOVS parameters')
 	parser.add_argument('-lfovs_e', '--lfovs_e', action='store_true', help='LFOVS parameters')
@@ -175,21 +176,25 @@ def process_args():
 	else:
 		setattr(parameters, 'lfovs_s', 0.4)
 
+	if(args['lfovs_n']):
+		setattr(parameters, 'lfovs_n', args['lfovs_n'])
+	else:
+		setattr(parameters, 'lfovs_n', 0.96)
+
 	if(args['lfovs_d']):
 		setattr(parameters, 'lfovs_d', args['lfovs_d'])
 	else:
-		setattr(parameters, 'lfovs_d', 0.96)
+		setattr(parameters, 'lfovs_d', 0.d)
 
 	if(args['lfovs_t']):
 		setattr(parameters, 'lfovs_t', args['lfovs_t'])
 	else:
-		setattr(parameters, 'lfovs_t', 0.0)
+		setattr(parameters, 'lfovs_t', 30)
 
 	if(args['lfovs_e']):
 		setattr(parameters, 'lfovs_e', args['lfovs_e'])
 	else:
-		setattr(parameters, 'lfovs_e', 30)
-
+		setattr(parameters, 'lfovs_e', 3)
 
 	if(args['updatesh']):
 		setattr(parameters, 'updatesh', 1)
