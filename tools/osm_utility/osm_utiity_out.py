@@ -184,7 +184,7 @@ def process_args():
 	if(args['lfovs_d']):
 		setattr(parameters, 'lfovs_d', args['lfovs_d'])
 	else:
-		setattr(parameters, 'lfovs_d', 0.d)
+		setattr(parameters, 'lfovs_d', 0.2)
 
 	if(args['lfovs_t']):
 		setattr(parameters, 'lfovs_t', args['lfovs_t'])
