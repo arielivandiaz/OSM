@@ -730,7 +730,7 @@ def create_sh(parameters,path):
 		if parameters.lfovs:	
 			output_lfovs=parameters.output_path + "/data"
 			#command='./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v21.mpg -o=../output/v21/data -s=0.4 -n=0.96 -d=0.25 -t=30 -e=3'
-			command='./../LFOVS/build/opencv_binary -i={1} -o={2} -s={3} -n={4} -d={5} -t={6} -e={7}'
+			command='./../LFOVS/build/opencv_binary -i={1} -o={2} -s={3} -n={4} -d={5} -t={6} -e={7} -v'
 			file.write(command.format(parameters.video,output_lfovs,parameters.lfovs_s,parameters.lfovs_n,parameters.lfovs_d,parameters.lfovs_t,parameters.lfovs_e))
 		command='../src/build/osm --method bhi -e {0} -d {1} -n {2} -f {3} -r "{4}/reference" -i "{4}/data/" --verbose \n'
 		file.write(command.format(epsilon,distance,users,length,parameters.output_path))
@@ -738,7 +738,7 @@ def create_sh(parameters,path):
 	else:
 		if parameters.lfovs:	
 			output_lfovs=parameters.output_path + "/data"
-			command='./../LFOVS/build/opencv_binary -i={1} -o={2} -s={3} -n={4} -d={5} -t={6} -e={7}'
+			command='./../LFOVS/build/opencv_binary -i={1} -o={2} -s={3} -n={4} -d={5} -t={6} -e={7} -v'
 			file.write(command.format(parameters.video,output_lfovs,parameters.lfovs_s,parameters.lfovs_n,parameters.lfovs_d,parameters.lfovs_t,parameters.lfovs_e))
 		command='../src/build/osm --method cus -e {0} -n {1} -f {2} -r "{3}/reference" -i "{3}/data/" --verbose \n'
 		file.write(command.format(epsilon,users,length,parameters.output_path))
@@ -768,14 +768,14 @@ def addline_sh(parameters):
 	if method==False:
 		if parameters.lfovs:	
 			output_lfovs=parameters.output_path + "/data"
-			command='./../LFOVS/build/opencv_binary -i={1} -o={2} -s={3} -n={4} -d={5} -t={6} -e={7}'
+			command='./../LFOVS/build/opencv_binary -i={1} -o={2} -s={3} -n={4} -d={5} -t={6} -e={7} -v'
 			file.write(command.format(parameters.video,output_lfovs,parameters.lfovs_s,parameters.lfovs_n,parameters.lfovs_d,parameters.lfovs_t,parameters.lfovs_e))
 		command='../src/build/osm --method bhi -e {0} -d {1} -n {2} -f {3} -r "{4}/reference" -i "{4}/data/" --verbose \n'
 		file.write(command.format(epsilon,distance,users,length,parameters.output_path))
 	else:
 		if parameters.lfovs:	
 			output_lfovs=parameters.output_path + "/data"
-			command='./../LFOVS/build/opencv_binary -i={1} -o={2} -s={3} -n={4} -d={5} -t={6} -e={7}'
+			command='./../LFOVS/build/opencv_binary -i={1} -o={2} -s={3} -n={4} -d={5} -t={6} -e={7} -v'
 			file.write(command.format(parameters.video,output_lfovs,parameters.lfovs_s,parameters.lfovs_n,parameters.lfovs_d,parameters.lfovs_t,parameters.lfovs_e))
 		command='../src/build/osm --method cus -e {0} -n {1} -f {2} -r "{3}/reference" -i "{3}/data/" --verbose \n'
 		file.write(command.format(epsilon,users,length,parameters.output_path))
