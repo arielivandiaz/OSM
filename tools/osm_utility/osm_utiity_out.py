@@ -456,6 +456,7 @@ def get_frame_without_ID(parameters):
 	#***************************************************************
 
 	if not parameters.lfovs:
+		print "a"*155
 		frame_id=0
 
 		folder_output=data_folder
@@ -644,6 +645,7 @@ def get_frame_with_ID(parameters):
 
 
 	if not parameters.lfovs:
+		print "a"*155
 		frame_id=0
 
 		frame_detection=0;
