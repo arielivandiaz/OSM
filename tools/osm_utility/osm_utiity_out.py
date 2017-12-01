@@ -387,6 +387,9 @@ def get_frame_without_ID(parameters):
 
 	setattr(param, 'output_path', main_folder_output)
 
+
+	reference_exist=0
+	
 	if os.path.exists(main_folder_output) == 0:     
 		os.mkdir(main_folder_output)
 	else:
@@ -397,6 +400,7 @@ def get_frame_without_ID(parameters):
 		os.mkdir(references_folder)
 	else:
 		print 'DIRECTORY', references_folder , 'EXISTS'
+		reference_exist=1
 
 	data_folder = main_folder_output + '/' + 'data'
 	if os.path.exists(data_folder) == 0:        
@@ -405,6 +409,12 @@ def get_frame_without_ID(parameters):
 		print 'DIRECTORY', data_folder , 'EXISTS'
 		
 	n_users = frames.shape[0]
+
+
+	if parameters.lfovs & reference_exist:
+
+		return length
+
 	
 	for user in range(0,n_users):
 
@@ -597,7 +607,7 @@ def get_frame_with_ID(parameters):
 
 		return length
 
-		
+
 	for user in range(0,n_users):
 
 		frame_id=0
