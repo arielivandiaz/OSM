@@ -1,0 +1,45 @@
+LIST OF TEST LFOVS 
+
+TEST 1 cus -s=0.25 -n=0.96 -d=0.25 -t=30.0 -e=3 -v 
+TEST 2 cus -s=0.35 -n=0.96 -d=0.25 -t=30.0 -e=3 -v 
+TEST 3 cus -s=0.4 -n=0.96 -d=0.25 -t=30.0 -e=3 -v 
+TEST 4 cus -s=0.45 -n=0.96 -d=0.25 -t=30.0 -e=3 -v 
+TEST 5 cus -s=0.55 -n=0.96 -d=0.25 -t=30.0 -e=3 -v 
+
+TEST 6 bhi -s=0.25 -n=0.96 -d=0.25 -t=30.0 -e=3 -v 
+TEST 7 bhi -s=0.35 -n=0.96 -d=0.25 -t=30.0 -e=3 -v 
+TEST 8 bhi -s=0.4 -n=0.96 -d=0.25 -t=30.0 -e=3 -v 
+TEST 9 bhi -s=0.45 -n=0.96 -d=0.25 -t=30.0 -e=3 -v 
+TEST 10 bhi -s=0.55 -n=0.96 -d=0.25 -t=30.0 -e=3 -v 
+
+TEST 11 cus -s=0.4 -n=0.92 -d=0.25 -t=30.0 -e=3 -v 
+TEST 12 cus -s=0.4 -n=0.94 -d=0.25 -t=30.0 -e=3 -v 
+TEST 13 cus -s=0.4 -n=0.98 -d=0.25 -t=30.0 -e=3 -v 
+
+TEST 14 bhi -s=0.4 -n=0.92 -d=0.25 -t=30.0 -e=3 -v 
+TEST 15 bhi -s=0.4 -n=0.94 -d=0.25 -t=30.0 -e=3 -v 
+TEST 16 bhi -s=0.4 -n=0.98 -d=0.25 -t=30.0 -e=3 -v 
+
+TEST 17 cus -s=0.4 -n=0.96 -d=0.15 -t=30.0 -e=3 -v 
+TEST 18 cus -s=0.4 -n=0.96 -d=0.20 -t=30.0 -e=3 -v 
+TEST 19 cus -s=0.4 -n=0.96 -d=0.30 -t=30.0 -e=3 -v 
+TEST 20 cus -s=0.4 -n=0.96 -d=0.35 -t=30.0 -e=3 -v 
+
+TEST 21 bhi -s=0.4 -n=0.96 -d=0.15 -t=30.0 -e=3 -v 
+TEST 22 bhi -s=0.4 -n=0.96 -d=0.20 -t=30.0 -e=3 -v 
+TEST 23 bhi -s=0.4 -n=0.96 -d=0.30 -t=30.0 -e=3 -v 
+TEST 24 bhi -s=0.4 -n=0.96 -d=0.35 -t=30.0 -e=3 -v  
+
+TEST 25 cus -s=0.4 -n=0.96 -d=0.25 -t=15.0 -e=3 -v 
+TEST 26 cus -s=0.4 -n=0.96 -d=0.25 -t=45.0 -e=3 -v 
+
+TEST 27 bhi -s=0.4 -n=0.96 -d=0.25 -t=15.0 -e=3 -v 
+TEST 28 bhi -s=0.4 -n=0.96 -d=0.25 -t=45.0 -e=3 -v 
+
+TEST 29 cus -s=0.4 -n=0.96 -d=0.25 -t=30.0 -e=1 -v 
+TEST 30 cus -s=0.4 -n=0.96 -d=0.25 -t=30.0 -e=6 -v 
+TEST 31 cus -s=0.4 -n=0.96 -d=0.25 -t=30.0 -e=9 -v 
+
+TEST 32 bhi -s=0.4 -n=0.96 -d=0.25 -t=30.0 -e=1 -v 
+TEST 33 bhi -s=0.4 -n=0.96 -d=0.25 -t=30.0 -e=6 -v 
+TEST 34 bhi -s=0.4 -n=0.96 -d=0.25 -t=30.0 -e=9 -v 

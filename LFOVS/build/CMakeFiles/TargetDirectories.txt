@@ -1,0 +1,3 @@
+/home/ariel/repos-git/video-description/01-source/build/CMakeFiles/edit_cache.dir
+/home/ariel/repos-git/video-description/01-source/build/CMakeFiles/rebuild_cache.dir
+/home/ariel/repos-git/video-description/01-source/build/CMakeFiles/opencv_binary.dir
