@@ -1,0 +1,69 @@
+
+********************************************************************************************************************************************
+Evaluation date: 02-44-09_13-12-2017
+	-lfovs_n	=	0.988
+	-distance	=	120
+	-users_csv	=	../user_summaries/VSUMM
+	-users	=	5
+	-format	=	.jpg
+	-epsilon	=	0.5
+	-vsum_csv	=	../auto_summaries/VSUMM1
+	-lfovs_e	=	9
+	-lfovs	=	1
+	-video	=	../videos/VSUMM
+	-lfovs_d	=	0.25
+	-lfovs_s	=	0.65
+	-group	=	1
+	-lfovs_t	=	30.0
+	-method	=	1
+********************************************************************************************************************************************
+			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa
+../output/v46/reference vs ../output/v46/data/		0.82667		0.41048		0.68889		0.82667		0.75152		0.74285
+../output/v22/reference vs ../output/v22/data/		0.37667		0.11667		0.80000		0.37667		0.51218		0.50795
+../output/v55/reference vs ../output/v55/data/		0.67333		0.51333		0.60000		0.67333		0.63455		0.61344
+../output/v31/reference vs ../output/v31/data/		0.27999		0.29062		0.52000		0.27999		0.36399		0.35644
+../output/v62/reference vs ../output/v62/data/		0.50000		0.06667		0.90000		0.50000		0.64286		0.63965
+../output/v29/reference vs ../output/v29/data/		0.11833		0.04000		0.80000		0.11833		0.20617		0.20391
+../output/v23/reference vs ../output/v23/data/		0.31238		0.42905		0.43333		0.31238		0.36305		0.35523
+../output/v49/reference vs ../output/v49/data/		0.17183		0.21743		0.44000		0.17183		0.24715		0.24488
+../output/v32/reference vs ../output/v32/data/		0.62813		0.59643		0.56000		0.62813		0.59211		0.57631
+../output/v57/reference vs ../output/v57/data/		0.25825		3.17167		0.07826		0.25825		0.12012		0.11662
+../output/v24/reference vs ../output/v24/data/		0.35828		0.89283		0.30909		0.35828		0.33187		0.32069
+../output/v56/reference vs ../output/v56/data/		0.52722		0.36722		0.68000		0.52722		0.59394		0.57022
+../output/v65/reference vs ../output/v65/data/		0.47273		0.32922		0.60000		0.47273		0.52881		0.52262
+../output/v28/reference vs ../output/v28/data/		0.24747		0.17625		0.60000		0.24747		0.35042		0.34556
+../output/v37/reference vs ../output/v37/data/		1.00000		1.00000		0.50000		1.00000		0.66667		0.66654
+../output/v36/reference vs ../output/v36/data/		0.66667		0.82667		0.45000		0.66667		0.53731		0.53556
+../output/v43/reference vs ../output/v43/data/		0.20148		0.02500		0.93333		0.20148		0.33142		0.32643
+../output/v64/reference vs ../output/v64/data/		0.79452		1.67452		0.32941		0.79452		0.46573		0.46094
+../output/v66/reference vs ../output/v66/data/		0.26667		0.00000		1.00000		0.26667		0.42105		0.41916
+../output/v41/reference vs ../output/v41/data/		0.39939		1.01061		0.30909		0.39939		0.34849		0.33681
+../output/v42/reference vs ../output/v42/data/		0.32063		0.79365		0.28889		0.32063		0.30394		0.30054
+../output/v48/reference vs ../output/v48/data/		0.47500		0.12024		0.80000		0.47500		0.59608		0.59399
+../output/v59/reference vs ../output/v59/data/		0.44701		0.19351		0.70000		0.44701		0.54561		0.54058
+../output/v25/reference vs ../output/v25/data/		0.09615		0.31527		0.24000		0.09615		0.13730		0.13384
+../output/v21/reference vs ../output/v21/data/		0.77172		2.22343		0.26667		0.77172		0.39637		0.38594
+../output/v30/reference vs ../output/v30/data/		0.10485		0.00000		1.00000		0.10485		0.18980		0.18855
+../output/v34/reference vs ../output/v34/data/		0.00000		0.00000		-1.00000		0.00000		0.00000		0.00000
+../output/v67/reference vs ../output/v67/data/		0.26587		0.26587		0.50000		0.26587		0.34715		0.34513
+../output/v69/reference vs ../output/v69/data/		0.36833		0.35500		0.53333		0.36833		0.43574		0.43129
+../output/v58/reference vs ../output/v58/data/		0.53397		0.21538		0.74286		0.53397		0.62133		0.60698
+../output/v33/reference vs ../output/v33/data/		0.23556		0.26222		0.51429		0.23556		0.32312		0.31492
+../output/v38/reference vs ../output/v38/data/		0.41459		0.76464		0.35385		0.41459		0.38182		0.37376
+../output/v45/reference vs ../output/v45/data/		0.48889		0.32460		0.64000		0.48889		0.55433		0.54456
+../output/v61/reference vs ../output/v61/data/		0.50571		0.15000		0.80000		0.50571		0.61969		0.60586
+../output/v44/reference vs ../output/v44/data/		0.24778		0.08889		0.80000		0.24778		0.37837		0.37457
+../output/v40/reference vs ../output/v40/data/		0.45333		0.33667		0.56667		0.45333		0.50370		0.49644
+../output/v35/reference vs ../output/v35/data/		0.63736		1.09481		0.40000		0.63736		0.49153		0.47929
+../output/v68/reference vs ../output/v68/data/		0.45000		1.85000		0.20000		0.45000		0.27692		0.27393
+../output/v53/reference vs ../output/v53/data/		0.95000		0.80000		0.57143		0.95000		0.71362		0.70384
+../output/v47/reference vs ../output/v47/data/		0.20000		0.20000		0.50000		0.20000		0.28571		0.28477
+../output/v39/reference vs ../output/v39/data/		0.34355		0.06505		0.84000		0.34355		0.48766		0.48560
+../output/v54/reference vs ../output/v54/data/		0.50571		0.39857		0.56667		0.50571		0.53446		0.53004
+../output/v70/reference vs ../output/v70/data/		0.38000		0.88000		0.30000		0.38000		0.33529		0.33201
+../output/v52/reference vs ../output/v52/data/		0.50317		0.12579		0.80000		0.50317		0.61778		0.61620
+../output/v63/reference vs ../output/v63/data/		0.47143		0.64286		0.42500		0.47143		0.44701		0.44485
+../output/v60/reference vs ../output/v60/data/		0.64183		0.47746		0.57778		0.64183		0.60812		0.60345
+../output/v26/reference vs ../output/v26/data/		0.32619		0.65595		0.40000		0.32619		0.35934		0.34669
+../output/v50/reference vs ../output/v50/data/		0.80722		0.35722		0.72500		0.80722		0.76391		0.75527
+../output/v51/reference vs ../output/v51/data/		0.14524		0.13571		0.50000		0.14524		0.22509		0.22362
