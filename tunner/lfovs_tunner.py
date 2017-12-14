@@ -11,7 +11,7 @@ import argparse
 from os import walk
 
 run_osm = """
-../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r "../output/v42/reference" -i "../output/v42/data/" --enable-double-zone 
+../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r ../output/v42/reference -i ../output/v42/data/ --enable-double-zone 
 """
 
 run_lfovs= """
@@ -72,8 +72,14 @@ if __name__ == '__main__':
 
 		actual = measure(output)
 	
-
+		#-s=0.45 -n=0.98 -d=0.25 -t=30.0 -e=18 
+		#-s=%f -n=%f -d=%f -t=%d -e=%d 
 		#print actual
 
 		sh("sh run_osm.sh")
+
+		
+		sh(run_lfovs % (0.5,0.98,0.25,30,18))
+
+
 
