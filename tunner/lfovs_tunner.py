@@ -90,8 +90,8 @@ def sh(script):
 if __name__ == '__main__':
 
 
-		params_best = metric(0.1,0.96,0.25,30,3)
-		params = metric(0.1,0.96,0.25,30,3)
+		params_best = metric(0.4,0.8,0.25,30,3)
+		params = metric(0.4,0.8,0.25,30,3)
 
 		best_f_meter=0 
 
@@ -121,12 +121,13 @@ if __name__ == '__main__':
 			
 			print
 		
-			params.s+=0.1
-			if float(params.s) >= 1:
+			params.n+=0.02
+			if float(params.n) >= 1:
 				running = 0
 				break
+
 		print '*'*40
-		print params
+		print params_best
 		print '*'*40
 
 		file = open('sensibilidad.txt','w')
