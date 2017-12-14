@@ -25,7 +25,20 @@ rm -r -f ../output/v42/data
 #./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v42.mpg -o=../output/v42/data -s=0.45 -n=0.98 -d=0.25 -t=30.0 -e=18 
 #../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r "../output/v42/reference" -i "../output/v42/data/" --enable-double-zone
 
-#class metric:
+class metric:
+
+	def __init__(self, sensibility,noise,distance,t,e):
+
+		self.s =sensibility
+		self.n =noise
+		self.d = distance
+		self.t = t
+		self.e = e
+
+	def __str__(self):
+
+
+		return "\n S = % f \n N = % f \n D = % f \n T = % d \n E = % d \n" % ( self.s,self.n,self.d, self.t, self.e)
 
 
 class measure:
@@ -50,7 +63,7 @@ class measure:
 	def __str__(self):
 
 
-		print "File Lecture: "
+		
 		return "\n Cus a = % f \n Cus e = % f \n Precision = % f \n Recall = % f \n F-meter = % f \n Kappa = % f \n  " % ( self.cus_a,self.cus_e,self.precision, self.recall, self.f_meter, self.kappa)
 
 
@@ -73,21 +86,20 @@ if __name__ == '__main__':
 		output=csv_to_matrix('averange')
 
 		actual = measure(output)
-	
-		#-s=0.45 -n=0.98 -d=0.25 -t=30.0 -e=18 
-		#-s=%f -n=%f -d=%f -t=%d -e=%d 
-		#print actual
 
-		
+		params = metric(0.5,0.98,0.25,30,18)
 
 		print
 		sh(clean_data)
 		sh(run_lfovs % (0.5,0.98,0.25,30,18))
+		print params
 		print	
 		sh("sudo sh run_osm.sh")	
 		print
 		sh(clean_data)
+		params.e=5
 		sh(run_lfovs % (0.5,0.98,0.25,30,5))
+		print params
 		print
 		sh("sh run_osm.sh")
 		print
