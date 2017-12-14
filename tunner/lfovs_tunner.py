@@ -15,7 +15,7 @@ run_osm = """
 """
 
 run_lfovs= """
-./../LFOVS/build/opencv_binary -i=../v42.mpg -o=../v42/data -s=%f -n=%f -d=%f -t=%d -e=%d 
+./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v42.mpg -o=../output/v42/data -s=%f -n=%f -d=%f -t=%d -e=%d 
 """
 
 #./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v42.mpg -o=../output/v42/data -s=0.45 -n=0.98 -d=0.25 -t=30.0 -e=18 
