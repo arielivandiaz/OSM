@@ -73,7 +73,7 @@ def csv_to_matrix(file):
 
 	file= file + '.csv'
    
-	output = np.array(list(csv.reader(open(file, "rb"), delimiter=",")))
+	output = np.array(list(csv.reader(open(file, "rb"), delimiter="\t")))
 
 	return output
 
