@@ -11,7 +11,7 @@ import argparse
 from os import walk
 
 run_osm = """
-../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r "../output/v42/reference" -i "../output/v42/data/" --enable-double-zone" 
+../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r "../output/v42/reference" -i "../output/v42/data/" --enable-double-zone 
 """
 
 run_lfovs= """
@@ -62,6 +62,12 @@ def sh(script):
 
 if __name__ == '__main__':
 
+		script = """
+		echo $0
+		ls -l
+		echo done
+		"""
+
 		output=csv_to_matrix('averange')
 
 		actual = measure(output)
@@ -69,5 +75,5 @@ if __name__ == '__main__':
 
 		#print actual
 
-		sh(run_osm)
+		sh("sh run_osm.sh")
 
