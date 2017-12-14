@@ -135,49 +135,67 @@ def tunning_param(params,to_tune,step,params_best):
 				if to_tune == 'e':
 					params_best.e = params.e			
 			print
+
+			file_history(params,to_tune)
 			
 			if to_tune == 's':
 				params.s += step
-				file = open('sensibility.txt','w')
-				file.write('Paraetros para tunning de s: \n')
 				if float(params.s) >= 1:
 					running = 0
 					break
 			if to_tune == 'n':
 				params.n += step
-				file = open('noise.txt','w')
-				file.write('Paraetros para tunning de n: \n')
 				if float(params.n) >= 1:
 					running = 0
 					break
 			if to_tune == 'd':
 				params.d += step
-				file = open('distance.txt','w')
-				file.write('Paraetros para tunning de d: \n')
 				if float(params.d) >= 1:
 					running = 0
 					break
 			if to_tune == 't':
 				params.t += step
-				file = open('t.txt','w')
-				file.write('Paraetros para tunning de t: \n')
 				if float(params.t) >= 100:
 					running = 0
 					break
 			if to_tune == 'e':
 				params.e += step
-				file = open('e.txt','w')
-				file.write('Paraetros para tunning de e: \n')
 				if float(params.e) >= 100:
 					running = 0
 					break
 			
 
-			file_history(params,to_tune)
+			
 
 		print '*'*40
 		print params_best
 		print '*'*40
+
+		if to_tune == 's':
+			
+				file = open('sensibility.txt','w')
+				file.write('Paraetros para tunning de s: \n')
+	
+		if to_tune == 'n':
+			
+				file = open('noise.txt','w')
+				file.write('Paraetros para tunning de n: \n')
+				
+		if to_tune == 'd':
+		
+				file = open('distance.txt','w')
+				file.write('Paraetros para tunning de d: \n')
+				
+		if to_tune == 't':
+		
+				file = open('t.txt','w')
+				file.write('Paraetros para tunning de t: \n')
+				
+		if to_tune == 'e':
+		
+				file = open('e.txt','w')
+				file.write('Paraetros para tunning de e: \n')
+			
 
 		
 		file.write('s = ' + str(params_best.s) + '\n')
@@ -214,12 +232,13 @@ if __name__ == '__main__':
 
 
 		params_best = metric(0.07,0.8,0.25,30,3)
-		params = metric(0.04,0.8,0.25,30,3)
+		params = metric(0.0,0.8,0.25,30,3)
 
 		best_f_meter=0 
 
 		#best f-meter for sensis
 
 		params_best.s = tunning_param(params,'s',0.5,params_best)
+		params.s=params_best.s
 		params.n=0.05
 		params_best.n =tunning_param(params,'n',0.05,params_best)
