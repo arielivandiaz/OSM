@@ -84,7 +84,7 @@ def csv_to_matrix(file):
 def sh(script):
 	os.system("bash -c '%s'" % script)
 
-def file_history(params,to_tune):
+def file_history(params,to_tune,actual):
 	
 	if to_tune == 's':
 		file = open('sensibility_h.txt','a')
@@ -97,8 +97,59 @@ def file_history(params,to_tune):
 	if to_tune == 'e':
 		file = open('e_h.txt','a')
 
-	file.write(str(params.s) + '\t' + str(params.n) + '\t' + str(params.d) + '\t' + str(params.t) + '\t' + str(params.e) + '\n' )
+	file.write(str(params.s) + '\t' + str(params.n) + '\t' + str(params.d) + '\t' + str(params.t) + '\t' + str(params.e) + '\t\t' )
+	file.write('cusA = ' + str(actual.cus_a) + '\t')
+	file.write('cusE = ' + str(actual.cus_e) + '\t')
+	file.write('precision = ' + str(actual.precision) + '\t')
+	file.write('recall = ' + str(actual.recall) + '\t')
+	file.write('f-meter = ' + str(actual.f_meter) + '\t')
+	file.write('kappa = ' + str(actual.kappa) + '\n')
 	file.close()
+
+def file_bests(params_best,to_tune,actual):
+
+		if to_tune == 's':
+			
+				file = open('sensibility.txt','w')
+				file.write('Paraetros para tunning de s: \n')
+	
+		if to_tune == 'n':
+			
+				file = open('noise.txt','w')
+				file.write('Paraetros para tunning de n: \n')
+				
+		if to_tune == 'd':
+		
+				file = open('distance.txt','w')
+				file.write('Paraetros para tunning de d: \n')
+				
+		if to_tune == 't':
+		
+				file = open('t.txt','w')
+				file.write('Paraetros para tunning de t: \n')
+				
+		if to_tune == 'e':
+		
+				file = open('e.txt','w')
+				file.write('Paraetros para tunning de e: \n')
+			
+
+		
+		file.write('s = ' + str(params_best.s) + '\n')
+		file.write('n = ' + str(params_best.n) + '\n')
+		file.write('d = ' + str(params_best.d) + '\n')
+		file.write('t = ' + str(params_best.t) + '\n')
+		file.write('e = ' + str(params_best.e) + '\n')
+		file.write('SALIDA OSM\n')
+		file.write('cusA = ' + str(actual.cus_a) + '\n')
+		file.write('cusE = ' + str(actual.cus_e) + '\n')
+		file.write('precision = ' + str(actual.precision) + '\n')
+		file.write('recall = ' + str(actual.recall) + '\n')
+		file.write('f-meter = ' + str(actual.f_meter) + '\n')
+		file.write('kappa = ' + str(actual.kappa) + '\n')
+		file.close()	
+
+					
 
 
 def tunning_param(params,to_tune,step,params_best):
@@ -106,7 +157,7 @@ def tunning_param(params,to_tune,step,params_best):
 
 	#Sensibility
 		running=1
-		best_f_meter=0
+		best_f_meter=-5
 		while(running):
 
 			
@@ -171,46 +222,7 @@ def tunning_param(params,to_tune,step,params_best):
 		print params_best
 		print '*'*40
 
-		if to_tune == 's':
-			
-				file = open('sensibility.txt','w')
-				file.write('Paraetros para tunning de s: \n')
-	
-		if to_tune == 'n':
-			
-				file = open('noise.txt','w')
-				file.write('Paraetros para tunning de n: \n')
-				
-		if to_tune == 'd':
-		
-				file = open('distance.txt','w')
-				file.write('Paraetros para tunning de d: \n')
-				
-		if to_tune == 't':
-		
-				file = open('t.txt','w')
-				file.write('Paraetros para tunning de t: \n')
-				
-		if to_tune == 'e':
-		
-				file = open('e.txt','w')
-				file.write('Paraetros para tunning de e: \n')
-			
-
-		
-		file.write('s = ' + str(params_best.s) + '\n')
-		file.write('n = ' + str(params_best.n) + '\n')
-		file.write('d = ' + str(params_best.d) + '\n')
-		file.write('t = ' + str(params_best.t) + '\n')
-		file.write('e = ' + str(params_best.e) + '\n')
-		file.write('SALIDA OSM\n')
-		file.write('cusA = ' + str(actual.cus_a) + '\n')
-		file.write('cusE = ' + str(actual.cus_e) + '\n')
-		file.write('precision = ' + str(actual.precision) + '\n')
-		file.write('recall = ' + str(actual.recall) + '\n')
-		file.write('f-meter = ' + str(actual.f_meter) + '\n')
-		file.write('kappa = ' + str(actual.kappa) + '\n')
-		file.close()	
+		file_bests(params_best,to_tune,actual)
 
 		if to_tune == 's':
 			return params_best.s	
@@ -221,8 +233,7 @@ def tunning_param(params,to_tune,step,params_best):
 		if to_tune == 't':
 			return params_best.t
 		if to_tune == 'e':
-			return params_best.e			
-
+			return params_best.e
 
 		
 
