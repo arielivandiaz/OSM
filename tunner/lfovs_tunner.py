@@ -84,7 +84,7 @@ def csv_to_matrix(file):
 def sh(script):
 	os.system("bash -c '%s'" % script)
 
-def file_history(params,to_tune)
+def file_history(params,to_tune):
 	
 	if to_tune == 's':
 		file = open('sensibility_h.txt','a')
@@ -106,12 +106,15 @@ def tunning_param(params,to_tune,step,params_best):
 
 	#Sensibility
 		running=1
+		best_f_meter=0
 		while(running):
 
-			print
+			
 			sh(clean_data)	
 			sh(run_lfovs % (params.s,params.n,params.d,params.t,params.e))			
+			
 			sh(print_frames)
+			print
 			print params
 			print	
 			sh("sh run_osm.sh")	
@@ -134,35 +137,35 @@ def tunning_param(params,to_tune,step,params_best):
 			print
 			
 			if to_tune == 's':
-				params.s + = step
+				params.s += step
 				file = open('sensibility.txt','w')
 				file.write('Paraetros para tunning de s: \n')
 				if float(params.s) >= 1:
 					running = 0
 					break
 			if to_tune == 'n':
-				params.n + = step
+				params.n += step
 				file = open('noise.txt','w')
 				file.write('Paraetros para tunning de n: \n')
 				if float(params.n) >= 1:
 					running = 0
 					break
 			if to_tune == 'd':
-				params.d + = step
+				params.d += step
 				file = open('distance.txt','w')
 				file.write('Paraetros para tunning de d: \n')
 				if float(params.d) >= 1:
 					running = 0
 					break
 			if to_tune == 't':
-				params.t + = step
+				params.t += step
 				file = open('t.txt','w')
 				file.write('Paraetros para tunning de t: \n')
 				if float(params.t) >= 100:
 					running = 0
 					break
 			if to_tune == 'e':
-				params.e + = step
+				params.e += step
 				file = open('e.txt','w')
 				file.write('Paraetros para tunning de e: \n')
 				if float(params.e) >= 100:
