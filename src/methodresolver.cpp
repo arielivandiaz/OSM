@@ -116,8 +116,6 @@ void MethodResolver::printResults(string referencePath, string dataPath) {
             file_csv.close();
         }
     }
-    else {
-        cout << this->CUSa << "\t" << this->CUSe << "\t" << this->precision << "\t" << this->recall << "\t" << this->Fmeter << "\t" << this->Kappa;
-    }
+ 
 
 }
