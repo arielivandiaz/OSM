@@ -19,6 +19,8 @@ run_lfovs= """
 """
 
 clean_data= """
+rm output.txt
+rm output.csv
 rm -r -f ../output/v42/data
 """
 
@@ -83,7 +85,7 @@ def sh(script):
 if __name__ == '__main__':
 
 
-		output=csv_to_matrix('averange')
+		output=csv_to_matrix('output')
 
 		actual = measure(output)
 
@@ -95,6 +97,9 @@ if __name__ == '__main__':
 		print params
 		print	
 		sh("sudo sh run_osm.sh")	
+		output=csv_to_matrix('output')
+		actual = measure(output)
+		print actual
 		print
 		sh(clean_data)
 		params.e=5
