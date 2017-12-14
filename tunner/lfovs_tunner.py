@@ -11,25 +11,25 @@ import argparse
 from os import walk
 
 run_osm = """
-../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r ../output/v21/reference -i ../output/v21/data/ --enable-double-zone 
+../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 2618 -r ../output/v62/reference -i ../output/v62/data/ 
 """
 
 run_lfovs= """
-./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v21.mpg -o=../output/v21/data -s=%f -n=%f -d=%f -t=%d -e=%d 
+./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v62.mpg -o=../output/v62/data -s=%f -n=%f -d=%f -t=%d -e=%d 
 """
 
 clean_data= """
 rm output.csv
 rm output.txt
-rm -r -f ../output/v21/data
+rm -r -f ../output/v62/data
 """
 
 print_frames="""
-ls ../output/v21/data
+ls ../output/v62/data
 """
 
-#./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v21.mpg -o=../output/v21/data -s=0.45 -n=0.98 -d=0.25 -t=30.0 -e=18 
-#../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r "../output/v21/reference" -i "../output/v21/data/" --enable-double-zone
+#./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v62.mpg -o=../output/v62/data -s=0.45 -n=0.98 -d=0.25 -t=30.0 -e=18 
+#../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r "../output/v62/reference" -i "../output/v62/data/" --enable-double-zone
 
 class metric:
 
