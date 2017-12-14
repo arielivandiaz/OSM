@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
 	
 
-		sh("sh run_osm.sh")
+		sh("sudo sh run_osm.sh")
 		resultado=commands.getoutput("ls")
 		print "asd = ", resultado
 
