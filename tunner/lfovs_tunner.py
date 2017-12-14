@@ -85,12 +85,22 @@ def sh(script):
 if __name__ == '__main__':
 
 
-		#output=csv_to_matrix('output')
+		output=csv_to_matrix('output')
 
-		#actual = measure(output)
+		print output
+		print 
+		print output[0]
+		print 
+		print output[0][1]
+		print 
+
+		actual = measure(output)
 
 		params = metric(0.5,0.98,0.25,30,18)
 
+
+
+		"""
 		print
 		sh(clean_data)
 		sh(run_lfovs % (0.5,0.98,0.25,30,18))
@@ -108,4 +118,5 @@ if __name__ == '__main__':
 		print
 		sh("sh run_osm.sh")
 		print
+		"""
 

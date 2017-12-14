@@ -105,7 +105,7 @@ void MethodResolver::printResults(string referencePath, string dataPath) {
             
     
             //file_csv << referencePath << " vs " << dataPath <<  "\t";
-            file_csv << this->CUSa << "\t" << this->CUSe << "\t"  << this->precision << "\t" << this->recall << "\t" << this->Fmeter << "\t"  << this->Kappa << '\n';
+            file_csv << this->CUSa << "," << this->CUSe << ","  << this->precision << "," << this->recall << "," << this->Fmeter << ","  << this->Kappa << '\n';
             
             //file << referencePath << " vs " << dataPath <<  "\t\t";
             file << this->CUSa << "\t\t" << this->CUSe << "\t\t"  << this->precision << "\t\t" << this->recall << "\t\t" << this->Fmeter << "\t\t"  << this->Kappa << '\n';
