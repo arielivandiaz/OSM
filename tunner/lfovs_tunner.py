@@ -21,6 +21,9 @@ run_lfovs= """
 #./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v42.mpg -o=../output/v42/data -s=0.45 -n=0.98 -d=0.25 -t=30.0 -e=18 
 #../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r "../output/v42/reference" -i "../output/v42/data/" --enable-double-zone
 
+#class metric:
+
+
 class measure:
 
 	cus_a = None
@@ -76,10 +79,14 @@ if __name__ == '__main__':
 		#-s=%f -n=%f -d=%f -t=%d -e=%d 
 		#print actual
 
-		sh("sh run_osm.sh")
+		
 
 		
 		sh(run_lfovs % (0.5,0.98,0.25,30,18))
 
+		sh("sh run_osm.sh")
 
+		sh(run_lfovs % (0.5,0.98,0.25,30,5))
+
+		sh("sh run_osm.sh")
 
