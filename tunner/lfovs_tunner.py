@@ -84,7 +84,9 @@ if __name__ == '__main__':
 		print
 		sh(run_lfovs % (0.5,0.98,0.25,30,18))
 		print
+		asd=input()
 		sh("sh run_osm.sh")
+		print "asd = ", asd
 		print
 		sh(run_lfovs % (0.5,0.98,0.25,30,5))
 		print

@@ -93,11 +93,11 @@ void MethodResolver::printResults(string referencePath, string dataPath) {
         cout << "*****************************************************" << endl;
         
 
-        ofstream file ("output2.txt");
+        ofstream file ("output.txt", std::ios::app);
         file << fixed;
         file.precision(5);
 
-        ofstream file_csv ("output2.csv");
+        ofstream file_csv ("output.csv", std::ios::app);
         file_csv << fixed;
         file_csv.precision(5);
 
@@ -116,6 +116,8 @@ void MethodResolver::printResults(string referencePath, string dataPath) {
             file_csv.close();
         }
     }
- 
+    else {
+        cout << this->CUSa << "\t" << this->CUSe << "\t" << this->precision << "\t" << this->recall << "\t" << this->Fmeter << "\t" << this->Kappa;
+    }
 
 }
