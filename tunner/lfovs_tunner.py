@@ -90,8 +90,8 @@ def sh(script):
 if __name__ == '__main__':
 
 
-		params_best = metric(0.4,0.8,0.25,30,3)
-		params = metric(0.4,0.8,0.25,30,3)
+		params_best = metric(0.04,0.8,0.25,30,3)
+		params = metric(0.04,0.8,0.25,30,3)
 
 		best_f_meter=0 
 
@@ -103,9 +103,9 @@ if __name__ == '__main__':
 
 			print
 			sh(clean_data)
-			#run_lfovs= run_lfovs%
+			
+			sh(print_frames)
 			sh(run_lfovs % (params.s,params.n,params.d,params.t,params.e))			
-			print  run_lfovs % (params.s,params.n,params.d,params.t,params.e)
 			sh(print_frames)
 			print params
 			print	
@@ -121,7 +121,7 @@ if __name__ == '__main__':
 			
 			print
 		
-			params.s+=0.05
+			params.s+=0.2
 			if float(params.s) >= 1:
 				running = 0
 				break
@@ -132,18 +132,18 @@ if __name__ == '__main__':
 
 		file = open('sensibilidad.txt','w')
 		file.write('Paraetros para tunning de sensibilidad: \n')
-		file.write(params.s + '\n')
-		file.write(params.n + '\n')
-		file.write(params.d + '\n')
-		file.write(params.t + '\n')
-		file.write(params.e + '\n')
+		file.write(str(params.s) + '\n')
+		file.write(str(params.n) + '\n')
+		file.write(str(params.d) + '\n')
+		file.write(str(params.t) + '\n')
+		file.write(str(params.e) + '\n')
 		file.write('SALIDA OSM\n')
-		file.write(actual.cus_a + '\n')
-		file.write(actual.cus_e + '\n')
-		file.write(actual.precision + '\n')
-		file.write(actual.recall + '\n')
-		file.write(actual.f_meter + '\n')
-		file.write(actual.kappa + '\n')
+		file.write(str(actual.cus_a) + '\n')
+		file.write(str(actual.cus_e) + '\n')
+		file.write(str(actual.precision) + '\n')
+		file.write(str(actual.recall) + '\n')
+		file.write(str(actual.f_meter) + '\n')
+		file.write(str(actual.kappa) + '\n')
 		file.close()
 
 		params = copy.copy(params_best)
