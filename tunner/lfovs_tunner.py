@@ -86,8 +86,8 @@ def sh(script):
 if __name__ == '__main__':
 
 
-		params_best = metric(0.2,0.98,0.25,30,9)
-		params = metric(0.2,0.98,0.25,30,9)
+		params_best = metric(0.1,0.98,0.25,30,9)
+		params = metric(0.1,0.98,0.25,30,9)
 
 		best_f_meter=0 
 
@@ -99,7 +99,7 @@ if __name__ == '__main__':
 
 			print
 			sh(clean_data)
-			sh(run_lfovs % (params.s,params.n,params.d,params.t,param.e))
+			sh(run_lfovs % (params.s,params.n,params.d,params.t,params.e))
 			print params
 			print	
 			sh("sh run_osm.sh")	
@@ -114,8 +114,9 @@ if __name__ == '__main__':
 			print
 		
 			params.s+=0.1
-			if params.s ==1:
+			if float(params.s) >= 1:
 				running = 0
+				break
 		print '*'*40
 		print params
 		print '*'*40
@@ -147,7 +148,7 @@ if __name__ == '__main__':
 
 			print
 			sh(clean_data)
-			sh(run_lfovs % (params.s,params.n,params.d,params.t,param.e))
+			sh(run_lfovs % (params.s,params.n,params.d,params.t,params.e))
 			print params
 			print	
 			sh("sh run_osm.sh")	
