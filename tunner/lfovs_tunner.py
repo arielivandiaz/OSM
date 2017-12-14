@@ -5,7 +5,7 @@ import commands
 import os
 import csv 
 import numpy as np
-
+import copy
 import datetime
 import argparse
 from os import walk
@@ -81,101 +81,106 @@ def sh(script):
     os.system("bash -c '%s'" % script)
 
 
-"""
-inputs = 5 
-s,n ,d ,t/10,e/20
 
-output = f-meter
-
-"""
 
 if __name__ == '__main__':
 
 
-		params_best = metric(0.5,0.98,0.25,30,9)
-		params = metric(0.5,0.98,0.25,30,9)
+		params_best = metric(0.2,0.98,0.25,30,9)
+		params = metric(0.2,0.98,0.25,30,9)
 
+		best_f_meter=0 
+
+		
+
+		#Sensibility
 		running=1
+		while(running):
 
-		#while(running):
-
-
-
-
-		"""
-
-		output=csv_to_matrix('output')
-
-		print output
-		print 
-		print output[0]
-		print 
-		print output[0][1]
-		print 
-
-		actual = measure(output)
-		"""
+			print
+			sh(clean_data)
+			sh(run_lfovs % (params.s,params.n,params.d,params.t,param.e))
+			print params
+			print	
+			sh("sh run_osm.sh")	
+			output=csv_to_matrix('output')
+			print 
+			actual = measure(output)
+			if actual.f_meter > best_f_meter:
+				best_f_meter =  actual.f_meter
+				params_best = copy.copy(params)
+				params_best = copy.deepcopy(params)			
+			
+			print
 		
+			params.s+=0.1
+			if params.s ==1:
+				running = 0
+		print '*'*40
+		print params
+		print '*'*40
+
+		file = open('sensibilidad.txt','w')
+		file.write('Paraetros para tunning de sensibilidad: \n')
+		file.write(params.s + '\n')
+		file.write(params.n + '\n')
+		file.write(params.d + '\n')
+		file.write(params.t + '\n')
+		file.write(params.e + '\n')
+		file.write('SALIDA OSM\n')
+		file.write(actual.cus_a + '\n')
+		file.write(actual.cus_e + '\n')
+		file.write(actual.precision + '\n')
+		file.write(actual.recall + '\n')
+		file.write(actual.f_meter + '\n')
+		file.write(actual.kappa + '\n')
+		file.close()
+
+		params = copy.copy(params_best)
+		params = copy.deepcopy(params_best)	
 
 
+		#Noise
+		params.n=0.7
+		running=1
+		while(running):
 
+			print
+			sh(clean_data)
+			sh(run_lfovs % (params.s,params.n,params.d,params.t,param.e))
+			print params
+			print	
+			sh("sh run_osm.sh")	
+			output=csv_to_matrix('output')
+			print 
+			actual = measure(output)
+			if actual.f_meter > best_f_meter:
+				best_f_meter =  actual.f_meter
+				params_best = copy.copy(params)
+				params_best = copy.deepcopy(params)			
+			
+			print
 		
-		print
-		sh(clean_data)
-		sh(run_lfovs % (0.5,0.98,0.25,30,18))
+			params.n+=0.05
+			if params.n ==1:
+				running = 0
+		print '*'*40
 		print params
-		print	
-		sh("sh run_osm.sh")	
-		output=csv_to_matrix('output')
-		print output
-		print 
-		print output[0]
-		print 
-		print output[0][1]
-		print 
-		actual = measure(output)
-		print actual
-		print
-		sh(clean_data)
-		params.e=5
-		sh(run_lfovs % (0.5,0.98,0.25,30,9))
-		print params
-		print
-		sh("sh run_osm.sh")
-		print
-		print
-		sh(clean_data)
-		sh(run_lfovs % (0.5,0.99,0.25,30,18))
-		print params
-		print	
-		sh("sh run_osm.sh")	
-		output=csv_to_matrix('output')
-		actual = measure(output)
-		print actual
-		print
-		sh(clean_data)
-		params.e=5
-		sh(run_lfovs % (0.5,0.95,0.25,30,9))
-		print params
-		print
-		sh("sh run_osm.sh")
-		print
-		print
-		sh(clean_data)
-		sh(run_lfovs % (0.5,0.98,0.25,30,18))
-		print params
-		print	
-		sh("sh run_osm.sh")	
-		output=csv_to_matrix('output')
-		actual = measure(output)
-		print actual
-		print
-		sh(clean_data)
-		params.e=5
-		sh(run_lfovs % (0.5,0.98,0.25,30,9))
-		print params
-		print
-		sh("sh run_osm.sh")
-		print
-		
+		print '*'*40
+
+		file = open('noise.txt','w')
+		file.write('Paraetros para tunning de noise: \n')
+		file.write(params.s + '\n')
+		file.write(params.n + '\n')
+		file.write(params.d + '\n')
+		file.write(params.t + '\n')
+		file.write(params.e + '\n')
+		file.write('SALIDA OSM\n')
+		file.write(actual.cus_a + '\n')
+		file.write(actual.cus_e + '\n')
+		file.write(actual.precision + '\n')
+		file.write(actual.recall + '\n')
+		file.write(actual.f_meter + '\n')
+		file.write(actual.kappa + '\n')
+		file.close()
 
