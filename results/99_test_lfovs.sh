@@ -1,7 +1,7 @@
 sh clean.sh
 rm run.sh
 #VSUMM1
-python ../tools/osm_utility/osm_utiity_out.py ../videos/VSUMM ../user_summaries/VSUMM ../auto_summaries/VSUMM1 -bhi -g -lfovs -lfovs_s 0.1 -lfovs_n 0.975 -lfovs_d 0.15 -lfovs_t 15 -lfovs_e 15
+python ../tools/osm_utility/osm_utiity_out.py ../videos/VSUMM ../user_summaries/VSUMM ../auto_summaries/VSUMM1 -cus -g -lfovs -lfovs_s 0.1 -lfovs_n 0.975 -lfovs_d 0.15 -lfovs_t 15 -lfovs_e 40 
 
 sh run.sh
 
