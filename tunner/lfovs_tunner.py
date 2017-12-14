@@ -18,6 +18,10 @@ run_lfovs= """
 ./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v42.mpg -o=../output/v42/data -s=%f -n=%f -d=%f -t=%d -e=%d 
 """
 
+clean_data= """
+rm -r -f ../output/v42/data
+"""
+
 #./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v42.mpg -o=../output/v42/data -s=0.45 -n=0.98 -d=0.25 -t=30.0 -e=18 
 #../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r "../output/v42/reference" -i "../output/v42/data/" --enable-double-zone
 
@@ -77,10 +81,12 @@ if __name__ == '__main__':
 		
 
 		print
+		sh(clean_data)
 		sh(run_lfovs % (0.5,0.98,0.25,30,18))
 		print	
 		sh("sudo sh run_osm.sh")	
 		print
+		sh(clean_data)
 		sh(run_lfovs % (0.5,0.98,0.25,30,5))
 		print
 		sh("sh run_osm.sh")
