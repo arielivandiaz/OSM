@@ -11,7 +11,7 @@ import argparse
 from os import walk
 
 run_osm = """
-../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 2674 -r "/v42/reference" -i "/v42/data/ " 
+../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r "../output/v42/reference" -i "../output/v42/data/" --enable-double-zone" 
 """
 
 run_lfovs= """
