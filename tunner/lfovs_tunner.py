@@ -11,21 +11,25 @@ import argparse
 from os import walk
 
 run_osm = """
-../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r ../output/v42/reference -i ../output/v42/data/ --enable-double-zone 
+../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r ../output/v21/reference -i ../output/v21/data/ --enable-double-zone 
 """
 
 run_lfovs= """
-./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v42.mpg -o=../output/v42/data -s=%f -n=%f -d=%f -t=%d -e=%d 
+./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v21.mpg -o=../output/v21/data -s=%f -n=%f -d=%f -t=%d -e=%d 
 """
 
 clean_data= """
 rm output.csv
 rm output.txt
-rm -r -f ../output/v42/data
+rm -r -f ../output/v21/data
 """
 
-#./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v42.mpg -o=../output/v42/data -s=0.45 -n=0.98 -d=0.25 -t=30.0 -e=18 
-#../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r "../output/v42/reference" -i "../output/v42/data/" --enable-double-zone
+print_frames="""
+ls ../output/v21/data
+"""
+
+#./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v21.mpg -o=../output/v21/data -s=0.45 -n=0.98 -d=0.25 -t=30.0 -e=18 
+#../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r "../output/v21/reference" -i "../output/v21/data/" --enable-double-zone
 
 class metric:
 
@@ -100,6 +104,7 @@ if __name__ == '__main__':
 			print
 			sh(clean_data)
 			sh(run_lfovs % (params.s,params.n,params.d,params.t,params.e))
+			sh(print_frames)
 			print params
 			print	
 			sh("sh run_osm.sh")	
@@ -107,6 +112,7 @@ if __name__ == '__main__':
 			print 
 			actual = measure(output)
 			if actual.f_meter > best_f_meter:
+				print "BEST F METER" + '!'*20
 				best_f_meter =  actual.f_meter
 				params_best = copy.copy(params)
 				params_best = copy.deepcopy(params)			
@@ -141,47 +147,4 @@ if __name__ == '__main__':
 		params = copy.deepcopy(params_best)	
 
 
-		#Noise
-		params.n=0.7
-		running=1
-		while(running):
-
-			print
-			sh(clean_data)
-			sh(run_lfovs % (params.s,params.n,params.d,params.t,params.e))
-			print params
-			print	
-			sh("sh run_osm.sh")	
-			output=csv_to_matrix('output')
-			print 
-			actual = measure(output)
-			if actual.f_meter > best_f_meter:
-				best_f_meter =  actual.f_meter
-				params_best = copy.copy(params)
-				params_best = copy.deepcopy(params)			
-			
-			print
-		
-			params.n+=0.05
-			if params.n ==1:
-				running = 0
-		print '*'*40
-		print params
-		print '*'*40
-
-		file = open('noise.txt','w')
-		file.write('Paraetros para tunning de noise: \n')
-		file.write(params.s + '\n')
-		file.write(params.n + '\n')
-		file.write(params.d + '\n')
-		file.write(params.t + '\n')
-		file.write(params.e + '\n')
-		file.write('SALIDA OSM\n')
-		file.write(actual.cus_a + '\n')
-		file.write(actual.cus_e + '\n')
-		file.write(actual.precision + '\n')
-		file.write(actual.recall + '\n')
-		file.write(actual.f_meter + '\n')
-		file.write(actual.kappa + '\n')
-		file.close()
 
