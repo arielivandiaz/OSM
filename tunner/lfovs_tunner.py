@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 
-
+import commands
 import os
 import csv 
 import numpy as np
@@ -82,11 +82,15 @@ if __name__ == '__main__':
 		
 
 		print
-		sh(run_lfovs % (0.5,0.98,0.25,30,18))
+		#sh(run_lfovs % (0.5,0.98,0.25,30,18))
 		print
-		asd=input()
+
+	
+
 		sh("sh run_osm.sh")
-		print "asd = ", asd
+		resultado=commands.getoutput("ls")
+		print "asd = ", resultado
+
 		print
 		sh(run_lfovs % (0.5,0.98,0.25,30,5))
 		print
