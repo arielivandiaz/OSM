@@ -19,7 +19,7 @@ run_lfovs= """
 """
 
 clean_data= """
-
+rm output.txt
 rm output.csv
 rm -r -f ../output/v42/data
 """
@@ -71,7 +71,7 @@ class measure:
 
 def csv_to_matrix(file):
 
-	file= file + '.csv'
+	file= file + '.txt'
    
 	output = np.array(list(csv.reader(open(file, "rb"), delimiter=",")))
 
@@ -81,27 +81,8 @@ def sh(script):
     os.system("bash -c '%s'" % script)
 
 
-"""
-inputs = 5 
-s,n ,d ,t/10,e/20
-
-output = f-meter
-
-"""
 
 if __name__ == '__main__':
-
-
-		params_best = metric(0.5,0.98,0.25,30,9)
-		params = metric(0.5,0.98,0.25,30,9)
-
-		running=1
-
-		#while(running):
-
-
-
-
 
 
 		output=csv_to_matrix('output')
@@ -115,11 +96,11 @@ if __name__ == '__main__':
 
 		actual = measure(output)
 
-		
+		params = metric(0.5,0.98,0.25,30,18)
 
 
 
-		
+		"""
 		print
 		sh(clean_data)
 		sh(run_lfovs % (0.5,0.98,0.25,30,18))
@@ -132,44 +113,10 @@ if __name__ == '__main__':
 		print
 		sh(clean_data)
 		params.e=5
-		sh(run_lfovs % (0.5,0.98,0.25,30,9))
+		sh(run_lfovs % (0.5,0.98,0.25,30,5))
 		print params
 		print
 		sh("sh run_osm.sh")
 		print
-				print
-		sh(clean_data)
-		sh(run_lfovs % (0.5,0.99,0.25,30,18))
-		print params
-		print	
-		sh("sudo sh run_osm.sh")	
-		output=csv_to_matrix('output')
-		actual = measure(output)
-		print actual
-		print
-		sh(clean_data)
-		params.e=5
-		sh(run_lfovs % (0.5,0.95,0.25,30,9))
-		print params
-		print
-		sh("sh run_osm.sh")
-		print
-				print
-		sh(clean_data)
-		sh(run_lfovs % (0.5,0.98,0.25,30,18))
-		print params
-		print	
-		sh("sudo sh run_osm.sh")	
-		output=csv_to_matrix('output')
-		actual = measure(output)
-		print actual
-		print
-		sh(clean_data)
-		params.e=5
-		sh(run_lfovs % (0.5,0.98,0.25,30,9))
-		print params
-		print
-		sh("sh run_osm.sh")
-		print
-		
+		"""
 
