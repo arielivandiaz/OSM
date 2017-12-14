@@ -1,0 +1,13 @@
+Paraetros para tunning de n: 
+s = 0.0
+n = 0.98
+d = 0.25
+t = 30
+e = 3
+SALIDA OSM
+cusA = 0.28333
+cusE = 0.56667
+precision = 0.33333
+recall = 0.28333
+f-meter = 0.30631
+kappa = 0.30389
