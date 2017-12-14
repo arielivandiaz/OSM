@@ -90,13 +90,13 @@ def sh(script):
 if __name__ == '__main__':
 
 
-		params_best = metric(0.04,0.8,0.25,30,3)
+		params_best = metric(0.07,0.8,0.25,30,3)
 		params = metric(0.04,0.8,0.25,30,3)
 
 		best_f_meter=0 
 
 		
-
+		"""
 		#Sensibility
 		running=1
 		while(running):
@@ -144,7 +144,7 @@ if __name__ == '__main__':
 		file.write(str(actual.kappa) + '\n')
 		file.close()
 
-	
+		"""	
 		params = copy.copy(params_best)
 		params = copy.deepcopy(params_best)	
 
