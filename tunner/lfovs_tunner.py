@@ -231,14 +231,14 @@ def tunning_param(params,to_tune,step,params_best):
 if __name__ == '__main__':
 
 
-		params_best = metric(0.07,0.8,0.25,30,3)
-		params = metric(0.0,0.8,0.25,30,3)
+		params_best = metric(0.07,0.98,0.25,30,3)
+		params = metric(0.0,0.98,0.25,30,3)
 
 		best_f_meter=0 
 
 		#best f-meter for sensis
 
-		params_best.s = tunning_param(params,'s',0.5,params_best)
+		params_best.s = tunning_param(params,'s',0.02,params_best)
 		params.s=params_best.s
-		params.n=0.05
-		params_best.n =tunning_param(params,'n',0.05,params_best)
+		params.n=0.02
+		params_best.n =tunning_param(params,'n',0.02,params_best)
