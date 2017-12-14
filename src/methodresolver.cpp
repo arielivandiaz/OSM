@@ -93,11 +93,10 @@ void MethodResolver::printResults(string referencePath, string dataPath) {
         cout << "*****************************************************" << endl;
         
 
-        ofstream file ("zoutput.txt", std::ios::app);
+        ofstream file ("output.txt", std::ios::app);
         file << fixed;
         file.precision(5);
-        std::ofstream ofs ("zzz.txt", std::ofstream::out);
-        ofstream file_csv ("zoutput.csv", std::ios::app);
+        ofstream file_csv ("output.csv", std::ios::app);
         file_csv << fixed;
         file_csv.precision(5);
 

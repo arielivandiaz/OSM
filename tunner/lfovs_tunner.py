@@ -65,11 +65,6 @@ def sh(script):
 
 if __name__ == '__main__':
 
-		script = """
-		echo $0
-		ls -l
-		echo done
-		"""
 
 		output=csv_to_matrix('averange')
 
@@ -82,15 +77,9 @@ if __name__ == '__main__':
 		
 
 		print
-		#sh(run_lfovs % (0.5,0.98,0.25,30,18))
-		print
-
-	
-
-		sh("sudo sh run_osm.sh")
-		resultado=commands.getoutput("ls")
-		print "asd = ", resultado
-
+		sh(run_lfovs % (0.5,0.98,0.25,30,18))
+		print	
+		sh("sudo sh run_osm.sh")	
 		print
 		sh(run_lfovs % (0.5,0.98,0.25,30,5))
 		print
