@@ -90,8 +90,8 @@ def sh(script):
 if __name__ == '__main__':
 
 
-		params_best = metric(0.1,0.98,0.25,30,9)
-		params = metric(0.1,0.98,0.25,30,9)
+		params_best = metric(0.1,0.96,0.25,30,3)
+		params = metric(0.1,0.96,0.25,30,3)
 
 		best_f_meter=0 
 
