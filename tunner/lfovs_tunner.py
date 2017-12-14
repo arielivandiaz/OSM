@@ -102,9 +102,7 @@ if __name__ == '__main__':
 		while(running):
 
 			print
-			sh(clean_data)
-			
-			sh(print_frames)
+			sh(clean_data)	
 			sh(run_lfovs % (params.s,params.n,params.d,params.t,params.e))			
 			sh(print_frames)
 			print params
@@ -116,12 +114,12 @@ if __name__ == '__main__':
 			if actual.f_meter > best_f_meter:
 				print "BEST F METER" + '!'*20
 				best_f_meter =  actual.f_meter
-				params_best = copy.copy(params)
-				params_best = copy.deepcopy(params)			
+				params_best.s = params.s
+						
 			
 			print
 		
-			params.s+=0.2
+			params.s+=0.01
 			if float(params.s) >= 1:
 				running = 0
 				break
@@ -146,8 +144,213 @@ if __name__ == '__main__':
 		file.write(str(actual.kappa) + '\n')
 		file.close()
 
+	
 		params = copy.copy(params_best)
 		params = copy.deepcopy(params_best)	
 
+		#Noise
+		running=1
+		best_f_meter=0
+		params.n=0.4
+		while(running):
 
+			print
+			sh(clean_data)	
+			sh(run_lfovs % (params.s,params.n,params.d,params.t,params.e))			
+			sh(print_frames)
+			print params
+			print	
+			sh("sh run_osm.sh")	
+			output=csv_to_matrix('output')
+			print 
+			actual = measure(output)
+			if actual.f_meter > best_f_meter:
+				print "BEST F METER" + '!'*20
+				best_f_meter =  actual.f_meter
+				params_best.n = params.n
+						
+			
+			print
+		
+			params.n+=0.002
+			if float(params.n) >= 1:
+				running = 0
+				break
+
+		print '*'*40
+		print params_best
+		print '*'*40
+
+		file = open('noise.txt','w')
+		file.write('Paraetros para tunning de noise: \n')
+		file.write(str(params.s) + '\n')
+		file.write(str(params.n) + '\n')
+		file.write(str(params.d) + '\n')
+		file.write(str(params.t) + '\n')
+		file.write(str(params.e) + '\n')
+		file.write('SALIDA OSM\n')
+		file.write(str(actual.cus_a) + '\n')
+		file.write(str(actual.cus_e) + '\n')
+		file.write(str(actual.precision) + '\n')
+		file.write(str(actual.recall) + '\n')
+		file.write(str(actual.f_meter) + '\n')
+		file.write(str(actual.kappa) + '\n')
+		file.close()
+
+
+		params = copy.copy(params_best)
+		params = copy.deepcopy(params_best)	
+
+		#Distance
+		running=1
+		best_f_meter=0
+		params.d=0.02
+		while(running):
+
+			print
+			sh(clean_data)	
+			sh(run_lfovs % (params.s,params.n,params.d,params.t,params.e))			
+			sh(print_frames)
+			print params
+			print	
+			sh("sh run_osm.sh")	
+			output=csv_to_matrix('output')
+			print 
+			actual = measure(output)
+			if actual.f_meter > best_f_meter:
+				print "BEST F METER" + '!'*20
+				best_f_meter =  actual.f_meter
+				params_best.d = params.d
+						
+			
+			print
+		
+			params.d+=0.02
+			if float(params.d) >= 1:
+				running = 0
+				break
+
+		print '*'*40
+		print params_best
+		print '*'*40
+
+		file = open('distance.txt','w')
+		file.write('Paraetros para tunning de distance: \n')
+		file.write(str(params.s) + '\n')
+		file.write(str(params.n) + '\n')
+		file.write(str(params.d) + '\n')
+		file.write(str(params.t) + '\n')
+		file.write(str(params.e) + '\n')
+		file.write('SALIDA OSM\n')
+		file.write(str(actual.cus_a) + '\n')
+		file.write(str(actual.cus_e) + '\n')
+		file.write(str(actual.precision) + '\n')
+		file.write(str(actual.recall) + '\n')
+		file.write(str(actual.f_meter) + '\n')
+		file.write(str(actual.kappa) + '\n')
+		file.close()
+
+		params = copy.copy(params_best)
+		params = copy.deepcopy(params_best)	
+
+		#t
+		running=1
+		best_f_meter=0
+		params.t=4
+		while(running):
+
+			print
+			sh(clean_data)	
+			sh(run_lfovs % (params.s,params.n,params.d,params.t,params.e))			
+			sh(print_frames)
+			print params
+			print	
+			sh("sh run_osm.sh")	
+			output=csv_to_matrix('output')
+			print 
+			actual = measure(output)
+			if actual.f_meter > best_f_meter:
+				print "BEST F METER" + '!'*20
+				best_f_meter =  actual.f_meter
+				params_best.t = params.t
+						
+			
+			print
+		
+			params.t+=2
+			if float(params.t) >= 100:
+				running = 0
+				break
+
+		print '*'*40
+		print params_best
+		print '*'*40
+
+		file = open('tempo.txt','w')
+		file.write('Paraetros para tunning de tempo: \n')
+		file.write(str(params.s) + '\n')
+		file.write(str(params.n) + '\n')
+		file.write(str(params.d) + '\n')
+		file.write(str(params.t) + '\n')
+		file.write(str(params.e) + '\n')
+		file.write('SALIDA OSM\n')
+		file.write(str(actual.cus_a) + '\n')
+		file.write(str(actual.cus_e) + '\n')
+		file.write(str(actual.precision) + '\n')
+		file.write(str(actual.recall) + '\n')
+		file.write(str(actual.f_meter) + '\n')
+		file.write(str(actual.kappa) + '\n')
+		file.close()
+
+		params = copy.copy(params_best)
+		params = copy.deepcopy(params_best)	
+
+		#e sample
+		running=1
+		best_f_meter=0
+		params.e=1
+		while(running):
+
+			print
+			sh(clean_data)	
+			sh(run_lfovs % (params.s,params.n,params.d,params.t,params.e))			
+			sh(print_frames)
+			print params
+			print	
+			sh("sh run_osm.sh")	
+			output=csv_to_matrix('output')
+			print 
+			actual = measure(output)
+			if actual.f_meter > best_f_meter:
+				print "BEST F METER" + '!'*20
+				best_f_meter =  actual.f_meter
+				params_best.e = params.e
+						
+			
+			print
+		
+			params.e+=2
+			if float(params.e) >= 100:
+				running = 0
+				break
+
+		print '*'*40
+		print params_best
+		print '*'*40
+
+		file = open('epsilon.txt','w')
+		file.write('Paraetros para tunning de epsilon: \n')
+		file.write(str(params.s) + '\n')
+		file.write(str(params.n) + '\n')
+		file.write(str(params.d) + '\n')
+		file.write(str(params.t) + '\n')
+		file.write(str(params.e) + '\n')
+		file.write('SALIDA OSM\n')
+		file.write(str(actual.cus_a) + '\n')
+		file.write(str(actual.cus_e) + '\n')
+		file.write(str(actual.precision) + '\n')
+		file.write(str(actual.recall) + '\n')
+		file.write(str(actual.f_meter) + '\n')
+		file.write(str(actual.kappa) + '\n')
+		file.close()
 
