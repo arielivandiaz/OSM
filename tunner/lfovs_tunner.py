@@ -121,8 +121,8 @@ if __name__ == '__main__':
 			
 			print
 		
-			params.n+=0.02
-			if float(params.n) >= 1:
+			params.s+=0.05
+			if float(params.s) >= 1:
 				running = 0
 				break
 
