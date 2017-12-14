@@ -54,12 +54,12 @@ class measure:
 
 	def __init__(self, array):
 
-		self.cus_a=float(array[1][0])
-		self.cus_e=float(array[1][1])
-		self.precision=float(array[1][2])
-		self.recall=float(array[1][3])
-		self.f_meter=float(array[1][4])
-		self.kappa=float(array[1][5])
+		self.cus_a=float(array[0][0])
+		self.cus_e=float(array[0][1])
+		self.precision=float(array[0][2])
+		self.recall=float(array[0][3])
+		self.f_meter=float(array[0][4])
+		self.kappa=float(array[0][5])
 
 
 	def __str__(self):
@@ -85,9 +85,9 @@ def sh(script):
 if __name__ == '__main__':
 
 
-		output=csv_to_matrix('output')
+		#output=csv_to_matrix('output')
 
-		actual = measure(output)
+		#actual = measure(output)
 
 		params = metric(0.5,0.98,0.25,30,18)
 
