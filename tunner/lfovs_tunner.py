@@ -11,25 +11,25 @@ import argparse
 from os import walk
 
 run_osm = """
-../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 2618 -r ../output/v62/reference -i ../output/v62/data/ 
+../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 2618 -r ../output/v42/reference -i ../output/v42/data/ 
 """
 
 run_lfovs= """
-./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v62.mpg -o=../output/v62/data -s=%f -n=%f -d=%f -t=%d -e=%d 
+./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v42.mpg -o=../output/v42/data -s=%f -n=%f -d=%f -t=%d -e=%d 
 """
 
 clean_data= """
 rm output.csv
 rm output.txt
-rm -r -f ../output/v62/data
+rm -r -f ../output/v42/data
 """
 
 print_frames="""
-ls ../output/v62/data
+ls ../output/v42/data
 """
 
-#./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v62.mpg -o=../output/v62/data -s=0.45 -n=0.98 -d=0.25 -t=30.0 -e=18 
-#../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r "../output/v62/reference" -i "../output/v62/data/" --enable-double-zone
+#./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v42.mpg -o=../output/v42/data -s=0.45 -n=0.98 -d=0.25 -t=30.0 -e=18 
+#../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r "../output/v42/reference" -i "../output/v42/data/" --enable-double-zone
 
 class metric:
 
@@ -243,13 +243,13 @@ if __name__ == '__main__':
 
 
 		params_best = metric(0.07,0.975,0.25,30,3)
-		params = metric(0.1,0.75,0.25,30,3)
+		params = metric(0.0,0.75,0.25,30,3)
 
 		best_f_meter=0 
 
 		#best f-meter for sensis
 
-		#params_best.s = tunning_param(params,'s',0.05,params_best)
-		#params.s=params_best.s
-		params.n=0.75
-		params_best.n =tunning_param(params,'n',0.01,params_best)
+		params_best.s = tunning_param(params,'s',0.05,params_best)
+		params.s=params_best.s
+		#params.n=0.75
+		#params_best.n =tunning_param(params,'n',0.01,params_best)
