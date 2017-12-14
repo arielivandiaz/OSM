@@ -103,7 +103,9 @@ if __name__ == '__main__':
 
 			print
 			sh(clean_data)
-			sh(run_lfovs % (params.s,params.n,params.d,params.t,params.e))
+			run_lfovs= run_lfovs% (params.s,params.n,params.d,params.t,params.e)
+			sh(run_lfovs )
+			print run_lfovs
 			sh(print_frames)
 			print params
 			print	
