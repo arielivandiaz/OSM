@@ -19,7 +19,7 @@ run_lfovs= """
 """
 
 clean_data= """
-
+rm output.csv
 rm output.txt
 rm -r -f ../output/v42/data
 """
@@ -71,7 +71,7 @@ class measure:
 
 def csv_to_matrix(file):
 
-	file= file + '.txt'
+	file= file + '.csv'
    
 	output = np.array(list(csv.reader(open(file, "rb"), delimiter=",")))
 
@@ -125,9 +125,15 @@ if __name__ == '__main__':
 		sh(run_lfovs % (0.5,0.98,0.25,30,18))
 		print params
 		print	
-		sh("sudo sh run_osm.sh")	
+		sh("sh run_osm.sh")	
 		output=csv_to_matrix('output')
-		actual = measure(output[0])
+		print output
+		print 
+		print output[0]
+		print 
+		print output[0][1]
+		print 
+		actual = measure(output)
 		print actual
 		print
 		sh(clean_data)
@@ -142,7 +148,7 @@ if __name__ == '__main__':
 		sh(run_lfovs % (0.5,0.99,0.25,30,18))
 		print params
 		print	
-		sh("sudo sh run_osm.sh")	
+		sh("sh run_osm.sh")	
 		output=csv_to_matrix('output')
 		actual = measure(output)
 		print actual
@@ -159,7 +165,7 @@ if __name__ == '__main__':
 		sh(run_lfovs % (0.5,0.98,0.25,30,18))
 		print params
 		print	
-		sh("sudo sh run_osm.sh")	
+		sh("sh run_osm.sh")	
 		output=csv_to_matrix('output')
 		actual = measure(output)
 		print actual
