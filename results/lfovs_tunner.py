@@ -71,9 +71,9 @@ if __name__ == '__main__':
 		echo done
 		"""
 
-		output=csv_to_matrix('averange')
+		#output=csv_to_matrix('averange')
 
-		actual = measure(output)
+		#actual = measure(output)
 	
 		#-s=0.45 -n=0.98 -d=0.25 -t=30.0 -e=18 
 		#-s=%f -n=%f -d=%f -t=%d -e=%d 
@@ -88,8 +88,8 @@ if __name__ == '__main__':
 	
 
 		sh("sh run_osm.sh")
-		resultado=commands.getoutput("ls")
-		print "asd = ", resultado
+		#resultado=commands.getoutput("ls")
+		#print "asd = ", resultado
 
 		print
 		sh(run_lfovs % (0.5,0.98,0.25,30,5))
