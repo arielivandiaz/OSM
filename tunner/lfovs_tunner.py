@@ -32,7 +32,6 @@ ls ../output/v42/data
 """
 
 
-
 class metric:
 
 	def __init__(self, sensibility,noise,distance,t,e):
@@ -60,12 +59,12 @@ class measure:
 
 	def __init__(self, array):
 
-		self.cus_a=float(array[0][0])
-		self.cus_e=float(array[0][1])
-		self.precision=float(array[0][2])
-		self.recall=float(array[0][3])
-		self.f_meter=float(array[0][4])
-		self.kappa=float(array[0][5])
+		self.cus_a=float(array[0][1])
+		self.cus_e=float(array[0][2])
+		self.precision=float(array[0][3])
+		self.recall=float(array[0][4])
+		self.f_meter=float(array[0][5])
+		self.kappa=float(array[0][6])
 
 
 	def __str__(self):
@@ -177,8 +176,7 @@ def tunning_param(params,to_tune,step,params_best):
 			print 
 			actual = measure(output)
 			if actual.f_meter > best_f_meter:
-				print "BEST F METER" + '!'*20
-				best_f_meter =  actual.f_meter
+				print "BEST F METER" + '!'*20				
 				if to_tune == 's':
 					params_best.s = params.s	
 				if to_tune == 'n':
@@ -188,10 +186,12 @@ def tunning_param(params,to_tune,step,params_best):
 				if to_tune == 't':
 					params_best.t = params.t
 				if to_tune == 'e':
-					params_best.e = params.e			
+					params_best.e = params.e
+				file_bests(params_best,to_tune,actual)
+				best_f_meter =  actual.f_meter			
 			print
 
-			file_history(params,to_tune,actual)
+			file_history(params_best,to_tune,actual)
 			
 			if to_tune == 's':
 				params.s += step
@@ -226,7 +226,8 @@ def tunning_param(params,to_tune,step,params_best):
 		print params_best
 		print '*'*40
 
-		file_bests(params_best,to_tune,actual)
+	
+			
 
 		if to_tune == 's':
 			return params_best.s	
@@ -246,12 +247,13 @@ def tunning_param(params,to_tune,step,params_best):
 if __name__ == '__main__':
 
 
-		params_best = metric(0.1,0.78,0.25,30,3)
-		params = metric(0.1,0.78,0.15,15,0)
+		params_best = metric(0.1,0.78,0.15,15,8)
+		params = metric(0.1,0.78,0.15,15,8)
 
 		best_f_meter=0 
 
-		params.e=0
+		params.s=0.05
 		
-		#For param e = 0 to param e = 100 with step 2, search best f-meter
-		params_best.e =tunning_param(params,'e',2,params_best)
+		#For param s = 0 to param s = 1 with step 0.05, search best f-meter
+		params_best.s =tunning_param(params,'s',0.05,params_best)
+		
