@@ -1,4 +1,2 @@
- 
-
 
 rm ../output/* -f -r
