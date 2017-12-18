@@ -1,3 +1,0 @@
-/home/ariel/repos-git/OSM/src/build/CMakeFiles/edit_cache.dir
-/home/ariel/repos-git/OSM/src/build/CMakeFiles/rebuild_cache.dir
-/home/ariel/repos-git/OSM/src/build/CMakeFiles/osm.dir

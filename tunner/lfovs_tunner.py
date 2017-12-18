@@ -10,8 +10,11 @@ import datetime
 import argparse
 from os import walk
 
+
+#this program works actually with video 42 only
+
 run_osm = """
-../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 2618 -r ../output/v42/reference -i ../output/v42/data/ 
+../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 2618 -r ../output/v42/reference -i ../output/v42/data/  --enable-double-zone
 """
 
 run_lfovs= """
@@ -28,8 +31,7 @@ print_frames="""
 ls ../output/v42/data
 """
 
-#./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v42.mpg -o=../output/v42/data -s=0.45 -n=0.98 -d=0.25 -t=30.0 -e=18 
-#../src/build/osm --method cus -e 0.5 -d 120 -n 5 -f 3591 -r "../output/v42/reference" -i "../output/v42/data/" --enable-double-zone
+
 
 class metric:
 
@@ -81,8 +83,10 @@ def csv_to_matrix(file):
 
 	return output
 
+
 def sh(script):
 	os.system("bash -c '%s'" % script)
+
 
 def file_history(params,to_tune,actual):
 	
@@ -155,7 +159,7 @@ def file_bests(params_best,to_tune,actual):
 def tunning_param(params,to_tune,step,params_best):
 
 
-	#Sensibility
+	
 		running=1
 		best_f_meter=-5
 		while(running):
@@ -247,9 +251,7 @@ if __name__ == '__main__':
 
 		best_f_meter=0 
 
-		#best f-meter for sensis
-
-		#params_best.s = tunning_param(params,'s',0.05,params_best)
-		#params.s=params_best.s
 		params.e=0
+		
+		#For param e = 0 to param e = 100 with step 2, search best f-meter
 		params_best.e =tunning_param(params,'e',2,params_best)
