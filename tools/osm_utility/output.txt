@@ -1,0 +1,16 @@
+
+********************************************************************************************************************************************
+Evaluation date: 18-23-56_16-11-2017
+	-distance	=	120
+	-users_csv	=	../../user_summaries/VSUMM/v21
+	-users	=	5
+	-video_length	=	3290
+	-format	=	.jpg
+	-epsilon	=	0.4
+	-vsum_csv	=	../../auto_summaries/VSUMM1/v21
+	-output_path	=	../../output/VSUMM
+	-video	=	../../videos/VSUMM/v21.mpg
+	-method	=	1
+********************************************************************************************************************************************
+			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa
+../../output/VSUMM/reference vs ../../output/VSUMM/data/		0.81253		1.32687		0.41333		0.81253		0.54793		0.53376
