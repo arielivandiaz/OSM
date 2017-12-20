@@ -36,7 +36,7 @@ def csv_to_matrix(file):
 
 	
    
-	output = np.array(list(csv.reader(open(file, "rb"), delimiter=",")))
+	output = np.array(list(csv.reader(open(file, "rb"), delimiter="\t")))
 
 	return output
 	
@@ -60,17 +60,18 @@ if __name__ == '__main__':
 
 	value=[0,0,0,0,0,0]
 
-	print matrix
-	print 
-	print matrix [0][0]
-	print matrix [0][5]
+
+	print matrix[1][1]
+	print matrix[1][2]
+	print matrix[1][3]
+	print matrix[1][4]
 	for i in range (0, len (matrix)):
-		for j in range(0,5):
+		for j in range(0,6):
 			value[j]+=float(matrix[i][j+1])
 
 	print value
 
-	for j in range(0,5):
+	for j in range(0,6):
 			value[j]/=len (matrix)
 
 	print value

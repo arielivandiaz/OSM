@@ -64,16 +64,10 @@ def get_args():
 	parser.add_argument('-e', nargs='?',   type=float, help='Epsilon')
 	parser.add_argument('-d', nargs='?',   type=int, help='Distance parameter for bhi method')
 	parser.add_argument('-u', nargs='?',   type=int, help='Number of users')
-
-	parser.add_argument('-lfovs', '--lfovs', action='store_true',  help='Run LFOVS ')
-	parser.add_argument('-lfovs_s', nargs='?', type=float,  help='LFOVS parameters')
-	parser.add_argument('-lfovs_n', nargs='?', type=float,  help='LFOVS parameters')
-	parser.add_argument('-lfovs_d', nargs='?', type=float,  help='LFOVS parameters')
-	parser.add_argument('-lfovs_t', nargs='?', type=float,  help='LFOVS parameters')
-	parser.add_argument('-lfovs_e', nargs='?', type=int,  help='LFOVS parameters')
+	parser.add_argument('-nd', '--nodata', action='store_true', help='No import data summaries')
 	parser.add_argument('-ush', '--updatesh', action='store_true', help='No make a new sh, only update')
 
-
+	
 	return vars(parser.parse_args())
 	
 
@@ -166,35 +160,10 @@ def process_args():
 	else:
 		setattr(parameters, 'users', 5)
 
-	if(args['lfovs']):
-		setattr(parameters, 'lfovs', 1)
+	if(args['nodata']):
+		setattr(parameters, 'no_data', 1)
 	else:
-		setattr(parameters, 'lfovs', 0)
-
-	if(args['lfovs_s']):
-		setattr(parameters, 'lfovs_s', args['lfovs_s'])
-	else:
-		setattr(parameters, 'lfovs_s', 0.4)
-
-	if(args['lfovs_n']):
-		setattr(parameters, 'lfovs_n', args['lfovs_n'])
-	else:
-		setattr(parameters, 'lfovs_n', 0.96)
-
-	if(args['lfovs_d']):
-		setattr(parameters, 'lfovs_d', args['lfovs_d'])
-	else:
-		setattr(parameters, 'lfovs_d', 0.2)
-
-	if(args['lfovs_t']):
-		setattr(parameters, 'lfovs_t', args['lfovs_t'])
-	else:
-		setattr(parameters, 'lfovs_t', 30)
-
-	if(args['lfovs_e']):
-		setattr(parameters, 'lfovs_e', args['lfovs_e'])
-	else:
-		setattr(parameters, 'lfovs_e', 3)
+		setattr(parameters, 'no_data', 0)
 
 	if(args['updatesh']):
 		setattr(parameters, 'updatesh', 1)
@@ -387,9 +356,6 @@ def get_frame_without_ID(parameters):
 
 	setattr(param, 'output_path', main_folder_output)
 
-
-	reference_exist=0
-	
 	if os.path.exists(main_folder_output) == 0:     
 		os.mkdir(main_folder_output)
 	else:
@@ -400,7 +366,6 @@ def get_frame_without_ID(parameters):
 		os.mkdir(references_folder)
 	else:
 		print 'DIRECTORY', references_folder , 'EXISTS'
-		reference_exist=1
 
 	data_folder = main_folder_output + '/' + 'data'
 	if os.path.exists(data_folder) == 0:        
@@ -409,12 +374,6 @@ def get_frame_without_ID(parameters):
 		print 'DIRECTORY', data_folder , 'EXISTS'
 		
 	n_users = frames.shape[0]
-
-
-	if parameters.lfovs & reference_exist:
-
-		return length
-
 	
 	for user in range(0,n_users):
 
@@ -465,8 +424,7 @@ def get_frame_without_ID(parameters):
 	#***************************************************************
 	#***************************************************************
 
-	if not parameters.lfovs:
-		
+	if not parameters.no_data:
 		frame_id=0
 
 		folder_output=data_folder
@@ -578,7 +536,6 @@ def get_frame_with_ID(parameters):
 
 	print main_folder_output
 
-	reference_exist=0
 
 	if os.path.exists(main_folder_output) == 0:		
 		os.mkdir(main_folder_output)
@@ -590,7 +547,6 @@ def get_frame_with_ID(parameters):
 		os.mkdir(references_folder)
 	else:
 		print 'DIRECTORY', references_folder , 'EXISTS'
-		reference_exist=1
 
 	data_folder = main_folder_output + '/' + 'data'
 	if os.path.exists(data_folder) == 0:		
@@ -603,10 +559,6 @@ def get_frame_with_ID(parameters):
 	n_users = frames.shape[0]
 	
 	
-	if parameters.lfovs & reference_exist:
-
-		return length
-
 
 	for user in range(0,n_users):
 
@@ -660,8 +612,7 @@ def get_frame_with_ID(parameters):
 	#vsum
 
 
-	if not parameters.lfovs:
-
+	if not parameters.no_data:
 		frame_id=0
 
 		frame_detection=0;
@@ -745,21 +696,11 @@ def create_sh(parameters,path):
 
 
 	if method==False:
-		if parameters.lfovs:	
-			output_lfovs=parameters.output_path + "/data"
-			#command='./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v21.mpg -o=../output/v21/data -s=0.4 -n=0.96 -d=0.25 -t=30 -e=3'
-			command='./../LFOVS/build/opencv_binary -i={0} -o={1} -s={2} -n={3} -d={4} -t={5} -e={6} \n'
-			file.write(command.format(parameters.video, output_lfovs, parameters.lfovs_s, parameters.lfovs_n, parameters.lfovs_d,  parameters.lfovs_t, parameters.lfovs_e))
-		command_2='../src/build/osm --method bhi -e {0} -d {1} -n {2} -f {3} -r "{4}/reference" -i "{4}/data/" --verbose \n'
-		file.write(command_2.format(epsilon,distance,users,length,parameters.output_path))
-
+		command='../src/build/osm --method bhi -e {0} -d {1} -n {2} -f {3} -r "{4}/reference" -i "{4}/data/" --verbose --enable-double-zone \n'
+		file.write(command.format(epsilon,distance,users,length,parameters.output_path))
 	else:
-		if parameters.lfovs:	
-			output_lfovs=parameters.output_path + "/data"
-			command='./../LFOVS/build/opencv_binary -i={0} -o={1} -s={2} -n={3} -d={4} -t={5} -e={6}  \n'
-			file.write(command.format(parameters.video, output_lfovs, parameters.lfovs_s, parameters.lfovs_n, parameters.lfovs_d,  parameters.lfovs_t, parameters.lfovs_e))
-		command_2='../src/build/osm --method cus -e {0} -n {1} -f {2} -r "{3}/reference" -i "{3}/data/" --verbose \n'
-		file.write(command_2.format(epsilon,users,length,parameters.output_path))
+		command='../src/build/osm --method cus -e {0} -n {1} -f {2} -r "{3}/reference" -i "{3}/data/" --verbose --enable-double-zone \n'
+		file.write(command.format(epsilon,users,length,parameters.output_path))
 
 	
 	file.close()
@@ -777,26 +718,17 @@ def addline_sh(parameters):
 	video_name=	parameters.video
 	method=parameters.method
 
-	#./../LFOVS/build/opencv_binary -i=../videos/VSUMM/v21.mpg -o=../output/v21/data -s=0.4 -n=0.96 -d=0.2 -t=30 
 
 
 	file = open('run.sh','a')
 
 
 	if method==False:
-		if parameters.lfovs:	
-			output_lfovs=parameters.output_path + "/data"
-			command='./../LFOVS/build/opencv_binary -i={0} -o={1} -s={2} -n={3} -d={4} -t={5} -e={6} -v \n'
-			file.write(command.format(parameters.video, output_lfovs, parameters.lfovs_s, parameters.lfovs_n, parameters.lfovs_d,  parameters.lfovs_t, parameters.lfovs_e))
-		command_2='../src/build/osm --method bhi -e {0} -d {1} -n {2} -f {3} -r "{4}/reference" -i "{4}/data/" --verbose \n'
-		file.write(command_2.format(epsilon,distance,users,length,parameters.output_path))
+		command='../src/build/osm --method bhi -e {0} -d {1} -n {2} -f {3} -r "{4}/reference" -i "{4}/data/" --verbose --enable-double-zone \n'
+		file.write(command.format(epsilon,distance,users,length,parameters.output_path))
 	else:
-		if parameters.lfovs:	
-			output_lfovs=parameters.output_path + "/data"
-			command='./../LFOVS/build/opencv_binary -i={0} -o={1} -s={2} -n={3} -d={4} -t={5} -e={6} -v \n'
-			file.write(command.format(parameters.video, output_lfovs, parameters.lfovs_s, parameters.lfovs_n, parameters.lfovs_d,  parameters.lfovs_t, parameters.lfovs_e))
-		command_2='../src/build/osm --method cus -e {0} -n {1} -f {2} -r "{3}/reference" -i "{3}/data/" --verbose  \n'
-		file.write(command_2.format(epsilon,users,length,parameters.output_path))
+		command='../src/build/osm --method cus -e {0} -n {1} -f {2} -r "{3}/reference" -i "{3}/data/" --verbose --enable-double-zone \n'
+		file.write(command.format(epsilon,users,length,parameters.output_path))
 
 	
 	file.close()
