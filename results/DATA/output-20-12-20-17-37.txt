@@ -1,0 +1,19 @@
+
+********************************************************************************************************************************************
+Evaluation date: 20-07-55_20-12-2017
+	-lfovs_n	=	0.98
+	-distance	=	120
+	-users_csv	=	../user_summaries/VSUMM
+	-users	=	5
+	-format	=	.jpg
+	-epsilon	=	0.5
+	-vsum_csv	=	../auto_summaries/VSUMM1
+	-lfovs_e	=	40
+	-lfovs	=	1
+	-video	=	../videos/VSUMM
+	-lfovs_d	=	0.15
+	-lfovs_s	=	0.05
+	-group	=	1
+	-lfovs_t	=	20.0
+********************************************************************************************************************************************
+			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa
