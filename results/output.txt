@@ -48,3 +48,23 @@
 ../output/v26/reference vs ../output/v26/data/		0.72857		2.02143		0.32381		0.72857		0.44835		0.43518
 ../output/v50/reference vs ../output/v50/data/		0.73500		2.03056		0.27368		0.73500		0.39885		0.39405
 ../output/v51/reference vs ../output/v51/data/		0.69048		1.13571		0.38462		0.69048		0.49404		0.49119
+
+********************************************************************************************************************************************
+Evaluation date: 18-37-12_23-12-2017
+	-lfovs_n	=	0.96
+	-distance	=	120
+	-users_csv	=	../user_summaries/VSUMM
+	-users	=	5
+	-format	=	.jpg
+	-epsilon	=	0.5
+	-vsum_csv	=	../auto_summaries/VSUMM1
+	-lfovs_e	=	9
+	-lfovs	=	1
+	-video	=	../videos/VSUMM
+	-lfovs_d	=	0.25
+	-lfovs_s	=	0.4
+	-group	=	1
+	-lfovs_t	=	30.0
+	-method	=	1
+********************************************************************************************************************************************
+			users path					data path				CUSa		CUSe		precision	recall		F-meter		Cohen's Kappaaa
