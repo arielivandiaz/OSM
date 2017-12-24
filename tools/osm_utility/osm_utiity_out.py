@@ -159,7 +159,7 @@ def process_args():
 	if(args['d']):
 		setattr(parameters, 'distance', args['d'])
 	else:
-		setattr(parameters, 'distance', 120)
+		setattr(parameters, 'distance', 60)
 
 	if(args['u']):
 		setattr(parameters, 'users', args['u'])
